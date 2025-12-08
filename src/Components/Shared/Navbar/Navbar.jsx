@@ -1,5 +1,6 @@
 import React from "react";
 import { Link, NavLink } from "react-router";
+import Logo from "../Logo/Logo";
 
 export default function Navbar() {
   const NavList = (
@@ -46,9 +47,7 @@ export default function Navbar() {
             {NavList}
           </ul>
         </div>
-        <Link to="/" className="btn btn-ghost text-xl ">
-          StyleDecor
-        </Link>
+        <Logo />
       </div>
 
       <div className="navbar-center hidden lg:flex">
@@ -56,7 +55,9 @@ export default function Navbar() {
       </div>
 
       <div className="navbar-end gap-2">
-        <a className="btn">Login</a>
+        <Link to="/authlayout/login" className="btn">
+          Login
+        </Link>
         {/* IMAGE ROUNDED */}
         <div className="dropdown dropdown-end">
           <div
