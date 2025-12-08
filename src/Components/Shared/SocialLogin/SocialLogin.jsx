@@ -1,8 +1,21 @@
 import React from "react";
+import useAuthHook from "../../../Hooks/useAuthHook";
 
 export default function SocialLogin() {
+  const { googleSignIn, setUser } = useAuthHook();
+  function handleGoogleSignIn() {
+    googleSignIn()
+      .then((res) => {
+        console.log(res.user);
+        setUser(res.user);
+      })
+      .catch((err) => console.log(err));
+  }
   return (
-    <button className="btn rounded-full bg-white text-black border-[#e5e5e5] w-full flex justify-center">
+    <button
+      onClick={handleGoogleSignIn}
+      className="btn rounded-full bg-white text-black border-[#e5e5e5] w-full flex justify-center"
+    >
       <svg
         aria-label="Google logo"
         width="16"

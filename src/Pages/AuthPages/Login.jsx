@@ -7,7 +7,7 @@ export default function Login() {
     <div className="card  w-full max-w-sm shrink-0 space-y-2 ">
       <div className="card-body">
         <section className="space-y-2 mb-4">
-          <h1 className="text-4xl font-bold">Good to See You Again</h1>
+          <h1 className="text-2xl font-bold">Good to See You Again</h1>
           <p>Log in and explore beautiful decor ideas.</p>
         </section>
         <fieldset className="fieldset">
