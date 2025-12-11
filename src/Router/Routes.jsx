@@ -7,6 +7,8 @@ import Contact from "../Pages/Contact/Contact";
 import AuthLayout from "../Layoutes/AuthLayout";
 import Login from "../Pages/AuthPages/Login";
 import Register from "../Pages/AuthPages/Register";
+import MyProfile from "../Pages/AuthPages/MyProfile";
+import UpdateProfile from "../Pages/AuthPages/UpdateProfile";
 
 export const router = createBrowserRouter([
   {
@@ -28,6 +30,14 @@ export const router = createBrowserRouter([
       {
         path: "/contact",
         element: <Contact />,
+      },
+      {
+        path: "/my_profile",
+        element: <MyProfile />,
+      },
+      {
+        path: "/update_profile",
+        element: <UpdateProfile />,
       },
     ],
   },

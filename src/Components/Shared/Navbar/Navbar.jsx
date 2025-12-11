@@ -66,9 +66,15 @@ export default function Navbar() {
       </div>
 
       <div className="navbar-end gap-2">
-        <Link to="/authlayout/login" className="btn">
-          Login
-        </Link>
+        {user ? (
+          <Link to="/dashboard" className="btn">
+            Dashboard
+          </Link>
+        ) : (
+          <Link to="/authlayout/login" className="btn">
+            Login
+          </Link>
+        )}
         {/* IMAGE ROUNDED */}
         <div className="dropdown dropdown-end">
           <div
@@ -85,7 +91,9 @@ export default function Navbar() {
             className="menu menu-sm dropdown-content bg-base-100 rounded-box z-1 mt-3 w-52 p-2 shadow"
           >
             <li>
-              <a className="justify-between">My Profile</a>
+              <Link to="/my_profile" className="justify-between">
+                My Profile
+              </Link>
             </li>
             <li>
               <button>{user?.displayName}</button>
