@@ -60,7 +60,6 @@ export default function UpdateProfile() {
             type="file"
             className="file-input rounded-full"
             name="photo"
-            defaultValue={user?.photoURL}
           />
 
           <button className="btn btn-neutral mt-4 rounded-full">Update</button>
