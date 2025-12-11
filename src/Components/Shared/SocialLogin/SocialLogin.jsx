@@ -1,5 +1,6 @@
 import React from "react";
 import useAuthHook from "../../../Hooks/useAuthHook";
+import toast from "react-hot-toast";
 
 export default function SocialLogin() {
   const { googleSignIn, setUser } = useAuthHook();
@@ -8,6 +9,7 @@ export default function SocialLogin() {
       .then((res) => {
         console.log(res.user);
         setUser(res.user);
+        toast.success("Login successfull");
       })
       .catch((err) => console.log(err));
   }

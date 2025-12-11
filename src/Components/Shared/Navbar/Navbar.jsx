@@ -1,12 +1,17 @@
 import { Link, NavLink } from "react-router";
 import Logo from "../Logo/Logo";
 import useAuthHook from "../../../Hooks/useAuthHook";
+import toast from "react-hot-toast";
 
 export default function Navbar() {
   const { user, logOut } = useAuthHook();
 
   function handleLogOut() {
-    logOut();
+    logOut()
+      .then(() => {
+        toast.success("logOut Successfull");
+      })
+      .catch((err) => console.log(err));
   }
 
   const NavList = (
@@ -72,7 +77,7 @@ export default function Navbar() {
             className="btn btn-ghost btn-circle avatar"
           >
             <div className="w-10 rounded-full">
-              <img alt="Tailwind CSS Navbar component" src={user?.photoURL} />
+              <img alt="user" src={user?.photoURL} />
             </div>
           </div>
           <ul
@@ -80,14 +85,12 @@ export default function Navbar() {
             className="menu menu-sm dropdown-content bg-base-100 rounded-box z-1 mt-3 w-52 p-2 shadow"
           >
             <li>
-              <a className="justify-between">Profile</a>
+              <a className="justify-between">My Profile</a>
             </li>
             <li>
-              <a>{user?.displayName}</a>
+              <button>{user?.displayName}</button>
             </li>
-            <li>
-              <button onClick={handleLogOut}>Logout</button>
-            </li>
+            <li>{user && <button onClick={handleLogOut}>Logout</button>}</li>
           </ul>
         </div>
       </div>

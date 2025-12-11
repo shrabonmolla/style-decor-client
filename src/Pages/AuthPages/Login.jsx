@@ -1,8 +1,21 @@
 import React from "react";
 import { Link } from "react-router";
 import SocialLogin from "../../Components/Shared/SocialLogin/SocialLogin";
+import toast from "react-hot-toast";
+import useAuthHook from "../../Hooks/useAuthHook";
+import { useForm } from "react-hook-form";
 
 export default function Login() {
+  const { logIn } = useAuthHook();
+  const { register, handleSubmit } = useForm();
+  // handleLogin
+  function handleLogin(data) {
+    logIn(data.email, data.password)
+      .then(() => {
+        toast.success("login successfull");
+      })
+      .catch((err) => console.log(err));
+  }
   return (
     <div className="card  w-full max-w-sm shrink-0 space-y-2 ">
       <div className="card-body">
@@ -10,15 +23,17 @@ export default function Login() {
           <h1 className="text-2xl font-bold">Good to See You Again</h1>
           <p>Log in and explore beautiful decor ideas.</p>
         </section>
-        <fieldset className="fieldset">
+        <form onSubmit={handleSubmit(handleLogin)} className="fieldset">
           <label className="label ">Email</label>
           <input
+            {...register("email")}
             type="email"
             className="input rounded-full"
             placeholder="Email"
           />
           <label className="label">Password</label>
           <input
+            {...register("password")}
             type="password"
             className="input rounded-full"
             placeholder="Password"
@@ -36,7 +51,7 @@ export default function Login() {
           <div className="flex w-full flex-col">
             <div className="divider">OR</div>
           </div>
-        </fieldset>
+        </form>
 
         <SocialLogin />
       </div>
