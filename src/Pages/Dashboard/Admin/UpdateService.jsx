@@ -14,7 +14,7 @@ export default function UpdateService() {
         </div>
         <div className="card bg-base-100 w-full max-w-sm shrink-0 shadow-2xl">
           <div className="card-body">
-            <fieldset className="fieldset">
+            <form className="fieldset">
               {/* service_name */}
               <label className="label">service_name</label>
               <input type="text" className="input" placeholder="service_name" />
@@ -57,7 +57,7 @@ export default function UpdateService() {
               <input type="email" className="input" placeholder="email" />
 
               <button className="btn btn-neutral mt-4">Update Service</button>
-            </fieldset>
+            </form>
           </div>
         </div>
       </div>
