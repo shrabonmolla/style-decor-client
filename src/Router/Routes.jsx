@@ -9,6 +9,10 @@ import Login from "../Pages/AuthPages/Login";
 import Register from "../Pages/AuthPages/Register";
 import MyProfile from "../Pages/AuthPages/MyProfile";
 import UpdateProfile from "../Pages/AuthPages/UpdateProfile";
+import DashboardLayout from "../Layoutes/DashboardLayout";
+import CreateService from "../Pages/Dashboard/Admin/CreateService";
+import ManageService from "../Pages/Dashboard/Admin/ManageService";
+import UpdateService from "../Pages/Dashboard/Admin/UpdateService";
 
 export const router = createBrowserRouter([
   {
@@ -55,6 +59,26 @@ export const router = createBrowserRouter([
       {
         path: "register",
         element: <Register />,
+      },
+    ],
+  },
+
+  // dashboard layout
+  {
+    path: "/dashboard",
+    element: <DashboardLayout />,
+    children: [
+      {
+        path: "create_service",
+        element: <CreateService />,
+      },
+      {
+        path: "manage_service",
+        element: <ManageService />,
+      },
+      {
+        path: "update_service",
+        element: <UpdateService />,
       },
     ],
   },

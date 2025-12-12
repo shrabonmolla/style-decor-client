@@ -53,7 +53,7 @@ export default function Map({ serviceCenters }) {
 
       <MapContainer
         ref={mapRef}
-        className="h-[800px] w-[90%]  "
+        className="h-[600px] w-[90%]  "
         center={position}
         zoom={8}
         scrollWheelZoom={false}
