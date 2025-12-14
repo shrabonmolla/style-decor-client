@@ -29,7 +29,7 @@ export default function ManageService() {
       })
       .catch((err) => console.log(err));
   }
-  console.log(data);
+  // console.log(data);
   return (
     <div>
       <div className="text-5xl font-bold">All Services : </div>
@@ -56,7 +56,7 @@ export default function ManageService() {
                     <td>{service.serviceCost}</td>
                     <td className="flex gap-2">
                       <Link
-                        to="/dashboard/update_service"
+                        to={`/dashboard/update_service/${service._id}`}
                         className="btn  btn-square btn-primary"
                       >
                         <MdEditNote />

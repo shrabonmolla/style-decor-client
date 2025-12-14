@@ -77,7 +77,7 @@ export const router = createBrowserRouter([
         element: <ManageService />,
       },
       {
-        path: "update_service",
+        path: "update_service/:id",
         element: <UpdateService />,
       },
     ],
