@@ -2,12 +2,23 @@ import React from "react";
 import { useForm } from "react-hook-form";
 import toast from "react-hot-toast";
 import useAxiosSecure from "../../../Hooks/useAxiosSecure";
+import { ImageUpload } from "../../../Utils/ImageUPload";
 export default function CreateService() {
   const axiosSecure = useAxiosSecure();
   const { register, handleSubmit } = useForm();
 
   // handleCreateServices
-  function handleCreateServices(formData) {
+  async function handleCreateServices(formData) {
+    console.log(formData);
+    const imageData = formData.photo[0];
+    const res = await ImageUpload(imageData);
+    // console.log(res.data.url);
+    // const newFormData = {
+    //   ...formData,
+    //   photo: res.data.url,
+    // };
+
+    formData.photo = res.data.url;
     axiosSecure
       .post(`/services`, formData)
       .then((res) => {
@@ -33,6 +44,13 @@ export default function CreateService() {
               onSubmit={handleSubmit(handleCreateServices)}
               className="fieldset"
             >
+              {/* service Photo */}
+              <label className="label"> Upload a Service Photo</label>
+              <input
+                {...register("photo")}
+                type="file"
+                className="file-input"
+              />
               {/* service_name */}
               <label className="label">service name</label>
               <input
