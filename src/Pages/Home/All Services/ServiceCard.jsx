@@ -1,12 +1,9 @@
 import React from "react";
+import { Link } from "react-router";
 
 export default function ServiceCard({ service }) {
-  const {
-    serviceName,
-    serviceCategory,
-    serviceCost,
-    photo,
-  } = service || {};
+  const { serviceName, serviceCategory, serviceCost, photo, _id } =
+    service || {};
   return (
     <div className="card  shadow-sm m-2">
       <div className="card-body">
@@ -23,7 +20,12 @@ export default function ServiceCard({ service }) {
           />
         </figure>
         <div className="mt-6">
-          <button className="btn btn-primary btn-block">View Details</button>
+          <Link
+            to={`/view_details/${_id}`}
+            className="btn btn-primary btn-block"
+          >
+            View Details
+          </Link>
         </div>
       </div>
     </div>

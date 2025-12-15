@@ -13,6 +13,7 @@ import DashboardLayout from "../Layoutes/DashboardLayout";
 import CreateService from "../Pages/Dashboard/Admin/CreateService";
 import ManageService from "../Pages/Dashboard/Admin/ManageService";
 import UpdateService from "../Pages/Dashboard/Admin/UpdateService";
+import ViewDetails from "../Pages/Home/All Services/ViewDetails";
 
 export const router = createBrowserRouter([
   {
@@ -43,6 +44,10 @@ export const router = createBrowserRouter([
       {
         path: "/update_profile",
         element: <UpdateProfile />,
+      },
+      {
+        path: "/view_details/:id",
+        element: <ViewDetails />,
       },
     ],
   },
