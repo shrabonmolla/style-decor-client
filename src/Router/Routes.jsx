@@ -14,6 +14,7 @@ import CreateService from "../Pages/Dashboard/Admin/CreateService";
 import ManageService from "../Pages/Dashboard/Admin/ManageService";
 import UpdateService from "../Pages/Dashboard/Admin/UpdateService";
 import ViewDetails from "../Pages/Home/All Services/ViewDetails";
+import MyBookings from "../Pages/Dashboard/Admin/MyBookings";
 
 export const router = createBrowserRouter([
   {
@@ -84,6 +85,10 @@ export const router = createBrowserRouter([
       {
         path: "update_service/:id",
         element: <UpdateService />,
+      },
+      {
+        path: "my_bookings",
+        element: <MyBookings />,
       },
     ],
   },
