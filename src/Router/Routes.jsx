@@ -14,7 +14,9 @@ import CreateService from "../Pages/Dashboard/Admin/CreateService";
 import ManageService from "../Pages/Dashboard/Admin/ManageService";
 import UpdateService from "../Pages/Dashboard/Admin/UpdateService";
 import ViewDetails from "../Pages/Home/All Services/ViewDetails";
-import MyBookings from "../Pages/Dashboard/Admin/MyBookings";
+import MyBookings from "../Pages/Dashboard/User/MyBookings";
+import PaymentSuccess from "../Pages/Dashboard/Payments/PaymentSuccess";
+import PaymentCancell from "../Pages/Dashboard/Payments/PaymentCancell";
 
 export const router = createBrowserRouter([
   {
@@ -89,6 +91,14 @@ export const router = createBrowserRouter([
       {
         path: "my_bookings",
         element: <MyBookings />,
+      },
+      {
+        path: "payment_success",
+        element: <PaymentSuccess />,
+      },
+      {
+        path: "payment_cancell",
+        element: <PaymentCancell />,
       },
     ],
   },

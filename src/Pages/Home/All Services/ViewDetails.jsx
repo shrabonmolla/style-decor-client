@@ -42,7 +42,13 @@ export default function ViewDetails() {
 
   //   handleBookService
   function handleBookService(bookingData) {
-    console.log(bookingData);
+    // console.log(bookingData);
+    axiosSecure
+      .post(`/bookings `, bookingData)
+      .then((res) => {
+        console.log("you booked this services", res);
+      })
+      .catch((err) => console.log(err));
   }
   return (
     <div>
