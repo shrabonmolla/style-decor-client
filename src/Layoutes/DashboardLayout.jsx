@@ -2,7 +2,9 @@ import React from "react";
 import Logo from "../Components/Shared/Logo/Logo";
 import { Link, Outlet } from "react-router";
 import { IoIosCreate } from "react-icons/io";
+import { GrTask } from "react-icons/gr";
 import {
+  MdAssignment,
   MdBookmarks,
   MdManageAccounts,
   MdOutlinePayment,
@@ -12,6 +14,7 @@ import {
   FaUsers,
   FaUsersViewfinder,
 } from "react-icons/fa6";
+import { IoCheckmarkDoneCircle } from "react-icons/io5";
 export default function DashboardLayout() {
   return (
     <div className="drawer lg:drawer-open">
@@ -96,6 +99,36 @@ export default function DashboardLayout() {
               </Link>
             </li>
 
+            {/*  My Assigned Services  */}
+            <li>
+              <Link
+                to="/dashboard/my_assigned_services"
+                className="is-drawer-close:tooltip is-drawer-close:tooltip-right"
+                data-tip="My Assigned Services"
+              >
+                {/* Settings icon */}
+                <GrTask className="my-1.5 inline-block size-4" />
+                <span className="is-drawer-close:hidden">
+                  My Assigned Services{" "}
+                </span>
+              </Link>
+            </li>
+
+            {/*  My Completed Services  */}
+            <li>
+              <Link
+                to="/dashboard/my_completed_services"
+                className="is-drawer-close:tooltip is-drawer-close:tooltip-right"
+                data-tip=" My Completed Services"
+              >
+                {/* Settings icon */}
+                <IoCheckmarkDoneCircle className="my-1.5 inline-block size-4" />
+                <span className="is-drawer-close:hidden">
+                  My Completed Services{" "}
+                </span>
+              </Link>
+            </li>
+
             {/*  Create item */}
             <li>
               <Link
@@ -145,6 +178,21 @@ export default function DashboardLayout() {
                 {/* Settings icon */}
                 <FaUsers className="my-1.5 inline-block size-4" />
                 <span className="is-drawer-close:hidden">Manage Users</span>
+              </Link>
+            </li>
+
+            {/* Manage Users  */}
+            <li>
+              <Link
+                to="/dashboard/assign_decorators"
+                className="is-drawer-close:tooltip is-drawer-close:tooltip-right"
+                data-tip=" Assign Decorators "
+              >
+                {/* Settings icon */}
+                <MdAssignment className="my-1.5 inline-block size-4" />
+                <span className="is-drawer-close:hidden">
+                  Assign Decorators{" "}
+                </span>
               </Link>
             </li>
 

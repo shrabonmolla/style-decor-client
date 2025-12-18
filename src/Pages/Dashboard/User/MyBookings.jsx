@@ -11,11 +11,11 @@ export default function MyBookings() {
   const { data } = useQuery({
     queryKey: ["my_bookings", user?.email],
     queryFn: async () => {
-      const res = await axiosSecure.get(`/bookings/?email=${user.email}`);
+      const res = await axiosSecure.get(`/mybookings/?email=${user.email}`);
       return res.data;
     },
   });
-  //   console.log(data);
+  // console.log(data);
 
   // handlePayment
   async function handlePayment(myBookings) {
@@ -42,6 +42,7 @@ export default function MyBookings() {
             <th>Cost</th>
             <th>Date</th>
             <th>Payment Status</th>
+            <th>Delivery Status</th>
             <th>Action</th>
           </tr>
         </thead>
@@ -66,6 +67,7 @@ export default function MyBookings() {
                       </button>
                     )}
                   </td>
+                  <td>{mybooings.deliveryStatus}</td>
                   <td className="flex gap-2">
                     <Link className="btn  btn-square btn-primary">
                       <MdEditNote />

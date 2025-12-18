@@ -21,6 +21,9 @@ import MyPayments from "../Pages/Dashboard/User/MyPayments";
 import BeADecorator from "../Pages/Dashboard/Decorator/BeADecorator";
 import ManageDecorator from "../Pages/Dashboard/Admin/ManageDecorator";
 import ManageUsers from "../Pages/Dashboard/Admin/ManageUsers";
+import AssignDecorator from "../Pages/Dashboard/Admin/AssignDecorator";
+import MyAssignedServices from "../Pages/Dashboard/Decorator/MyAssignedServices";
+import CompletedServices from "../Pages/Dashboard/Decorator/CompletedServices";
 
 export const router = createBrowserRouter([
   {
@@ -86,6 +89,14 @@ export const router = createBrowserRouter([
         loader: () => fetch("/serviceCenters.json"),
       },
       {
+        path: "my_assigned_services",
+        element: <MyAssignedServices />,
+      },
+      {
+        path: "my_completed_services",
+        element: <CompletedServices />,
+      },
+      {
         path: "create_service",
         element: <CreateService />,
       },
@@ -100,6 +111,10 @@ export const router = createBrowserRouter([
       {
         path: "manage_users",
         element: <ManageUsers />,
+      },
+      {
+        path: "assign_decorators",
+        element: <AssignDecorator />,
       },
       {
         path: "update_service/:id",
