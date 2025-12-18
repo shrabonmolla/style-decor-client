@@ -18,6 +18,8 @@ import MyBookings from "../Pages/Dashboard/User/MyBookings";
 import PaymentSuccess from "../Pages/Dashboard/Payments/PaymentSuccess";
 import PaymentCancell from "../Pages/Dashboard/Payments/PaymentCancell";
 import MyPayments from "../Pages/Dashboard/User/MyPayments";
+import BeADecorator from "../Pages/Dashboard/Decorator/BeADecorator";
+import ManageDecorator from "../Pages/Dashboard/Admin/ManageDecorator";
 
 export const router = createBrowserRouter([
   {
@@ -78,12 +80,21 @@ export const router = createBrowserRouter([
     element: <DashboardLayout />,
     children: [
       {
+        path: "be_a_decorator",
+        element: <BeADecorator />,
+        loader: () => fetch("/serviceCenters.json"),
+      },
+      {
         path: "create_service",
         element: <CreateService />,
       },
       {
         path: "manage_service",
         element: <ManageService />,
+      },
+      {
+        path: "manage_decorator",
+        element: <ManageDecorator />,
       },
       {
         path: "update_service/:id",

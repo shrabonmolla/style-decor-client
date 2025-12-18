@@ -7,6 +7,7 @@ import {
   MdManageAccounts,
   MdOutlinePayment,
 } from "react-icons/md";
+import { FaArrowUpWideShort } from "react-icons/fa6";
 export default function DashboardLayout() {
   return (
     <div className="drawer lg:drawer-open">
@@ -78,6 +79,19 @@ export default function DashboardLayout() {
               </button>
             </li>
 
+            {/*  Be a decorator  */}
+            <li>
+              <Link
+                to="/dashboard/be_a_decorator"
+                className="is-drawer-close:tooltip is-drawer-close:tooltip-right"
+                data-tip=" Be a decorator"
+              >
+                {/* Settings icon */}
+                <FaArrowUpWideShort className="my-1.5 inline-block size-4" />
+                <span className="is-drawer-close:hidden">Be a decorator</span>
+              </Link>
+            </li>
+
             {/*  Create item */}
             <li>
               <Link
@@ -101,6 +115,19 @@ export default function DashboardLayout() {
                 {/* Settings icon */}
                 <MdManageAccounts className="my-1.5 inline-block size-4" />
                 <span className="is-drawer-close:hidden">Manage Service</span>
+              </Link>
+            </li>
+
+            {/* Manage Decorator  */}
+            <li>
+              <Link
+                to="/dashboard/manage_decorator"
+                className="is-drawer-close:tooltip is-drawer-close:tooltip-right"
+                data-tip=" Manage Decorator"
+              >
+                {/* Settings icon */}
+                <FaArrowUpWideShort className="my-1.5 inline-block size-4" />
+                <span className="is-drawer-close:hidden">Manage Decorator</span>
               </Link>
             </li>
 

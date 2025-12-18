@@ -3,6 +3,7 @@ import { useForm } from "react-hook-form";
 import toast from "react-hot-toast";
 import useAxiosSecure from "../../../Hooks/useAxiosSecure";
 import { ImageUpload } from "../../../Utils/ImageUPload";
+
 export default function CreateService() {
   const axiosSecure = useAxiosSecure();
   const { register, handleSubmit } = useForm();
@@ -27,6 +28,7 @@ export default function CreateService() {
       })
       .catch((err) => console.log(err));
   }
+
   return (
     <div className="hero bg-base-200 min-h-screen">
       <div className="hero-content flex-col lg:flex-row-reverse">
