@@ -1,4 +1,5 @@
 import React from "react";
+
 import Logo from "../Components/Shared/Logo/Logo";
 import { Link, Outlet } from "react-router";
 import { IoIosCreate } from "react-icons/io";
@@ -15,7 +16,11 @@ import {
   FaUsersViewfinder,
 } from "react-icons/fa6";
 import { IoCheckmarkDoneCircle } from "react-icons/io5";
+import useRole from "../Hooks/useRole";
+
 export default function DashboardLayout() {
+  const { role } = useRole();
+  console.log(role?.role);
   return (
     <div className="drawer lg:drawer-open">
       <input id="my-drawer-4" type="checkbox" className="drawer-toggle" />
@@ -99,128 +104,143 @@ export default function DashboardLayout() {
               </Link>
             </li>
 
-            {/*  My Assigned Services  */}
-            <li>
-              <Link
-                to="/dashboard/my_assigned_services"
-                className="is-drawer-close:tooltip is-drawer-close:tooltip-right"
-                data-tip="My Assigned Services"
-              >
-                {/* Settings icon */}
-                <GrTask className="my-1.5 inline-block size-4" />
-                <span className="is-drawer-close:hidden">
-                  My Assigned Services{" "}
-                </span>
-              </Link>
-            </li>
+            {role?.role == "decorator" && (
+              <>
+                {" "}
+                {/*  My Assigned Services  */}
+                <li>
+                  <Link
+                    to="/dashboard/my_assigned_services"
+                    className="is-drawer-close:tooltip is-drawer-close:tooltip-right"
+                    data-tip="My Assigned Services"
+                  >
+                    {/* Settings icon */}
+                    <GrTask className="my-1.5 inline-block size-4" />
+                    <span className="is-drawer-close:hidden">
+                      My Assigned Services{" "}
+                    </span>
+                  </Link>
+                </li>
+                {/*  My Completed Services  */}
+                <li>
+                  <Link
+                    to="/dashboard/my_completed_services"
+                    className="is-drawer-close:tooltip is-drawer-close:tooltip-right"
+                    data-tip=" My Completed Services"
+                  >
+                    {/* Settings icon */}
+                    <IoCheckmarkDoneCircle className="my-1.5 inline-block size-4" />
+                    <span className="is-drawer-close:hidden">
+                      My Completed Services{" "}
+                    </span>
+                  </Link>
+                </li>
+              </>
+            )}
 
-            {/*  My Completed Services  */}
-            <li>
-              <Link
-                to="/dashboard/my_completed_services"
-                className="is-drawer-close:tooltip is-drawer-close:tooltip-right"
-                data-tip=" My Completed Services"
-              >
-                {/* Settings icon */}
-                <IoCheckmarkDoneCircle className="my-1.5 inline-block size-4" />
-                <span className="is-drawer-close:hidden">
-                  My Completed Services{" "}
-                </span>
-              </Link>
-            </li>
+            {role?.role == "admin" && (
+              <>
+                {" "}
+                {/*  Create item */}
+                <li>
+                  <Link
+                    to="/dashboard/create_service"
+                    className="is-drawer-close:tooltip is-drawer-close:tooltip-right"
+                    data-tip="Create Service"
+                  >
+                    {/* Settings icon */}
+                    <IoIosCreate className="my-1.5 inline-block size-4" />
+                    <span className="is-drawer-close:hidden">
+                      Create Service
+                    </span>
+                  </Link>
+                </li>
+                {/*  manage service item */}
+                <li>
+                  <Link
+                    to="/dashboard/manage_service"
+                    className="is-drawer-close:tooltip is-drawer-close:tooltip-right"
+                    data-tip="Manage Service"
+                  >
+                    {/* Settings icon */}
+                    <MdManageAccounts className="my-1.5 inline-block size-4" />
+                    <span className="is-drawer-close:hidden">
+                      Manage Service
+                    </span>
+                  </Link>
+                </li>
+                {/* Manage Decorator  */}
+                <li>
+                  <Link
+                    to="/dashboard/manage_decorator"
+                    className="is-drawer-close:tooltip is-drawer-close:tooltip-right"
+                    data-tip=" Manage Decorator"
+                  >
+                    {/* Settings icon */}
+                    <FaUsersViewfinder className="my-1.5 inline-block size-4" />
+                    <span className="is-drawer-close:hidden">
+                      Manage Decorator
+                    </span>
+                  </Link>
+                </li>
+                {/* Manage Users  */}
+                <li>
+                  <Link
+                    to="/dashboard/manage_users"
+                    className="is-drawer-close:tooltip is-drawer-close:tooltip-right"
+                    data-tip=" Manage Users"
+                  >
+                    {/* Settings icon */}
+                    <FaUsers className="my-1.5 inline-block size-4" />
+                    <span className="is-drawer-close:hidden">Manage Users</span>
+                  </Link>
+                </li>
+                {/* Assign Decorators  */}
+                <li>
+                  <Link
+                    to="/dashboard/assign_decorators"
+                    className="is-drawer-close:tooltip is-drawer-close:tooltip-right"
+                    data-tip=" Assign Decorators "
+                  >
+                    {/* Settings icon */}
+                    <MdAssignment className="my-1.5 inline-block size-4" />
+                    <span className="is-drawer-close:hidden">
+                      Assign Decorators{" "}
+                    </span>
+                  </Link>
+                </li>
+              </>
+            )}
 
-            {/*  Create item */}
-            <li>
-              <Link
-                to="/dashboard/create_service"
-                className="is-drawer-close:tooltip is-drawer-close:tooltip-right"
-                data-tip="Create Service"
-              >
-                {/* Settings icon */}
-                <IoIosCreate className="my-1.5 inline-block size-4" />
-                <span className="is-drawer-close:hidden">Create Service</span>
-              </Link>
-            </li>
-
-            {/*  manage service item */}
-            <li>
-              <Link
-                to="/dashboard/manage_service"
-                className="is-drawer-close:tooltip is-drawer-close:tooltip-right"
-                data-tip="Manage Service"
-              >
-                {/* Settings icon */}
-                <MdManageAccounts className="my-1.5 inline-block size-4" />
-                <span className="is-drawer-close:hidden">Manage Service</span>
-              </Link>
-            </li>
-
-            {/* Manage Decorator  */}
-            <li>
-              <Link
-                to="/dashboard/manage_decorator"
-                className="is-drawer-close:tooltip is-drawer-close:tooltip-right"
-                data-tip=" Manage Decorator"
-              >
-                {/* Settings icon */}
-                <FaUsersViewfinder className="my-1.5 inline-block size-4" />
-                <span className="is-drawer-close:hidden">Manage Decorator</span>
-              </Link>
-            </li>
-
-            {/* Manage Users  */}
-            <li>
-              <Link
-                to="/dashboard/manage_users"
-                className="is-drawer-close:tooltip is-drawer-close:tooltip-right"
-                data-tip=" Manage Users"
-              >
-                {/* Settings icon */}
-                <FaUsers className="my-1.5 inline-block size-4" />
-                <span className="is-drawer-close:hidden">Manage Users</span>
-              </Link>
-            </li>
-
-            {/* Manage Users  */}
-            <li>
-              <Link
-                to="/dashboard/assign_decorators"
-                className="is-drawer-close:tooltip is-drawer-close:tooltip-right"
-                data-tip=" Assign Decorators "
-              >
-                {/* Settings icon */}
-                <MdAssignment className="my-1.5 inline-block size-4" />
-                <span className="is-drawer-close:hidden">
-                  Assign Decorators{" "}
-                </span>
-              </Link>
-            </li>
-
-            {/*  My bookings  */}
-            <li>
-              <Link
-                to="/dashboard/my_bookings"
-                className="is-drawer-close:tooltip is-drawer-close:tooltip-right"
-                data-tip="My Bookings"
-              >
-                {/* Settings icon */}
-                <MdBookmarks className="my-1.5 inline-block size-4" />
-                <span className="is-drawer-close:hidden">My Bookings</span>
-              </Link>
-            </li>
-
-            {/*  My Payments  */}
-            <li>
-              <Link
-                to="/dashboard/my_payments"
-                className="is-drawer-close:tooltip is-drawer-close:tooltip-right"
-                data-tip=" My Payments"
-              >
-                {/* Settings icon */}
-                <MdOutlinePayment className="my-1.5 inline-block size-4" />
-                <span className="is-drawer-close:hidden"> My Payments</span>
-              </Link>
-            </li>
+            {role?.role == "user" && (
+              <>
+                {" "}
+                {/*  My bookings  */}
+                <li>
+                  <Link
+                    to="/dashboard/my_bookings"
+                    className="is-drawer-close:tooltip is-drawer-close:tooltip-right"
+                    data-tip="My Bookings"
+                  >
+                    {/* Settings icon */}
+                    <MdBookmarks className="my-1.5 inline-block size-4" />
+                    <span className="is-drawer-close:hidden">My Bookings</span>
+                  </Link>
+                </li>
+                {/*  My Payments  */}
+                <li>
+                  <Link
+                    to="/dashboard/my_payments"
+                    className="is-drawer-close:tooltip is-drawer-close:tooltip-right"
+                    data-tip=" My Payments"
+                  >
+                    {/* Settings icon */}
+                    <MdOutlinePayment className="my-1.5 inline-block size-4" />
+                    <span className="is-drawer-close:hidden"> My Payments</span>
+                  </Link>
+                </li>
+              </>
+            )}
           </ul>
         </div>
       </div>
