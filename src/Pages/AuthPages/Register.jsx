@@ -5,9 +5,11 @@ import useAuthHook from "../../Hooks/useAuthHook";
 import toast from "react-hot-toast";
 import { useForm } from "react-hook-form";
 import axios from "axios";
+import useAxiosSecure from "../../Hooks/useAxiosSecure";
 export default function Register() {
   const { registerUser, userProflieUpdate } = useAuthHook();
   const { register, handleSubmit } = useForm();
+  const axiosSecure = useAxiosSecure();
 
   // handleRegister
   function handleRegister(formData) {
@@ -31,6 +33,20 @@ export default function Register() {
           )
           .then((res) => {
             console.log(res.data.data.url);
+
+            // create user in the database
+            const userInfo = {
+              email: formData.email,
+              displayName: formData.name,
+              photoURL: res.data.data.url,
+            };
+            axiosSecure.post("/users", userInfo).then((res) => {
+              if (res.data.insertedId) {
+                console.log("user created in the database");
+                toast.success("user data saved in database");
+              }
+            });
+
             const profileData = {
               displayName: formData.name,
               photoURL: res.data.data.url,

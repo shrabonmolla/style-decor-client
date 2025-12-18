@@ -1,15 +1,31 @@
 import React from "react";
 import useAuthHook from "../../../Hooks/useAuthHook";
 import toast from "react-hot-toast";
+import useAxiosSecure from "../../../Hooks/useAxiosSecure";
+import { useNavigate } from "react-router";
 
 export default function SocialLogin() {
   const { googleSignIn, setUser } = useAuthHook();
+  const axiosSecure = useAxiosSecure();
+  const navigate = useNavigate();
+
   function handleGoogleSignIn() {
     googleSignIn()
       .then((res) => {
         console.log(res.user);
         setUser(res.user);
         toast.success("Login successfull");
+        // create user in the database
+        const userInfo = {
+          email: res.user.email,
+          displayName: res.user.displayName,
+          photoURL: res.user.photoURL,
+        };
+
+        axiosSecure.post("/users", userInfo).then((res) => {
+          console.log("user data has been stored", res.data);
+          navigate("/");
+        });
       })
       .catch((err) => console.log(err));
   }
