@@ -7,7 +7,11 @@ import {
   MdManageAccounts,
   MdOutlinePayment,
 } from "react-icons/md";
-import { FaArrowUpWideShort } from "react-icons/fa6";
+import {
+  FaArrowUpWideShort,
+  FaUsers,
+  FaUsersViewfinder,
+} from "react-icons/fa6";
 export default function DashboardLayout() {
   return (
     <div className="drawer lg:drawer-open">
@@ -126,8 +130,21 @@ export default function DashboardLayout() {
                 data-tip=" Manage Decorator"
               >
                 {/* Settings icon */}
-                <FaArrowUpWideShort className="my-1.5 inline-block size-4" />
+                <FaUsersViewfinder className="my-1.5 inline-block size-4" />
                 <span className="is-drawer-close:hidden">Manage Decorator</span>
+              </Link>
+            </li>
+
+            {/* Manage Users  */}
+            <li>
+              <Link
+                to="/dashboard/manage_users"
+                className="is-drawer-close:tooltip is-drawer-close:tooltip-right"
+                data-tip=" Manage Users"
+              >
+                {/* Settings icon */}
+                <FaUsers className="my-1.5 inline-block size-4" />
+                <span className="is-drawer-close:hidden">Manage Users</span>
               </Link>
             </li>
 

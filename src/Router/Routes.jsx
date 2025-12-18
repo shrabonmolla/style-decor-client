@@ -20,6 +20,7 @@ import PaymentCancell from "../Pages/Dashboard/Payments/PaymentCancell";
 import MyPayments from "../Pages/Dashboard/User/MyPayments";
 import BeADecorator from "../Pages/Dashboard/Decorator/BeADecorator";
 import ManageDecorator from "../Pages/Dashboard/Admin/ManageDecorator";
+import ManageUsers from "../Pages/Dashboard/Admin/ManageUsers";
 
 export const router = createBrowserRouter([
   {
@@ -95,6 +96,10 @@ export const router = createBrowserRouter([
       {
         path: "manage_decorator",
         element: <ManageDecorator />,
+      },
+      {
+        path: "manage_users",
+        element: <ManageUsers />,
       },
       {
         path: "update_service/:id",

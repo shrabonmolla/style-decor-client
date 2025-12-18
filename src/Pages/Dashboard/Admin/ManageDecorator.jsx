@@ -20,7 +20,7 @@ export default function ManageDecorator() {
     axiosSecure
       .patch(`/decorators/${Decorator._id}`, updateInfo)
       .then((res) => {
-        console.log("deorator status updatd", res);
+        console.log("deorator status updatd", res);         
         refetch();
       });
   };
