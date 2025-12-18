@@ -2,7 +2,11 @@ import React from "react";
 import Logo from "../Components/Shared/Logo/Logo";
 import { Link, Outlet } from "react-router";
 import { IoIosCreate } from "react-icons/io";
-import { MdBookmarks, MdManageAccounts } from "react-icons/md";
+import {
+  MdBookmarks,
+  MdManageAccounts,
+  MdOutlinePayment,
+} from "react-icons/md";
 export default function DashboardLayout() {
   return (
     <div className="drawer lg:drawer-open">
@@ -110,6 +114,19 @@ export default function DashboardLayout() {
                 {/* Settings icon */}
                 <MdBookmarks className="my-1.5 inline-block size-4" />
                 <span className="is-drawer-close:hidden">My Bookings</span>
+              </Link>
+            </li>
+
+            {/*  My Payments  */}
+            <li>
+              <Link
+                to="/dashboard/my_payments"
+                className="is-drawer-close:tooltip is-drawer-close:tooltip-right"
+                data-tip=" My Payments"
+              >
+                {/* Settings icon */}
+                <MdOutlinePayment className="my-1.5 inline-block size-4" />
+                <span className="is-drawer-close:hidden"> My Payments</span>
               </Link>
             </li>
           </ul>

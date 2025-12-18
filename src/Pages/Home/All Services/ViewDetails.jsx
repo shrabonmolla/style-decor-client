@@ -6,6 +6,7 @@ import useAuthHook from "../../../Hooks/useAuthHook";
 import { DayPicker } from "react-day-picker";
 import "react-day-picker/style.css";
 import { useForm } from "react-hook-form";
+import toast from "react-hot-toast";
 
 export default function ViewDetails() {
   const { register, handleSubmit } = useForm();
@@ -47,6 +48,7 @@ export default function ViewDetails() {
       .post(`/bookings `, bookingData)
       .then((res) => {
         console.log("you booked this services", res);
+        toast.success("you booked this services")
       })
       .catch((err) => console.log(err));
   }
