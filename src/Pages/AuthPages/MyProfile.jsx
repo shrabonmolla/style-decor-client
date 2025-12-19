@@ -4,13 +4,19 @@ import { Link } from "react-router";
 
 export default function MyProfile() {
   const { user } = useAuthHook();
+
   return (
-    <div className="hero bg-base-200 min-h-screen">
-      <div className="hero-content flex-col lg:flex-row">
-        <img src={user?.photoURL} className="max-w-sm rounded-lg shadow-2xl" />
-        <div>
-          <h1 className="text-5xl font-bold">{user?.displayName}</h1>
-          <p className="py-6">{user?.email}</p>
+    <div className="card  bg-base-100 card-lg shadow-sm w-94 mx-auto my-4">
+      <div className="card-body">
+        <div className="avatar avatar-online">
+          <div className="w-24 rounded-full">
+            <img src={user?.photoURL} />
+          </div>
+        </div>
+
+        <h2 className="card-title">{user?.displayName}</h2>
+        <p>{user?.email}</p>
+        <div className="justify-end card-actions">
           <Link to="/update_profile" className="btn btn-primary">
             Edit Profile
           </Link>

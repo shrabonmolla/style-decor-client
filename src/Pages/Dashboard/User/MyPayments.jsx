@@ -4,6 +4,7 @@ import useAuthHook from "../../../Hooks/useAuthHook";
 import useAxiosSecure from "../../../Hooks/useAxiosSecure";
 import { Link } from "react-router";
 import Loading from "../../../Components/Shared/Loading/Loading";
+import Title from "../../../Components/Shared/Title/Title";
 
 export default function MyPayments() {
   const { user } = useAuthHook();
@@ -21,6 +22,7 @@ export default function MyPayments() {
   }
   return (
     <div className="overflow-x-auto rounded-box border border-base-content/5 bg-base-100">
+      <Title text={`Payments History : ${data?.length}`} />
       <table className="table">
         {/* head */}
         <thead>

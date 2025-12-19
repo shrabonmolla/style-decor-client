@@ -7,6 +7,7 @@ import { MdEditNote, MdOutlineDelete } from "react-icons/md";
 import Loading from "../../../Components/Shared/Loading/Loading";
 import { useForm } from "react-hook-form";
 import toast from "react-hot-toast";
+import Title from "../../../Components/Shared/Title/Title";
 
 export default function MyBookings() {
   const [currentBooking, setCurrentBookings] = useState(null);
@@ -66,6 +67,7 @@ export default function MyBookings() {
 
   return (
     <div className="overflow-x-auto rounded-box border border-base-content/5 bg-base-100">
+      <Title text={`My Bookings : ${data?.length}`} />
       <table className="table">
         {/* head */}
         <thead>

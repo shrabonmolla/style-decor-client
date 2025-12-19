@@ -15,12 +15,23 @@ import {
   FaUsers,
   FaUsersViewfinder,
 } from "react-icons/fa6";
-import { IoCheckmarkDoneCircle } from "react-icons/io5";
+import { IoCheckmarkDoneCircle, IoLogOut } from "react-icons/io5";
 import useRole from "../Hooks/useRole";
+import useAuthHook from "../Hooks/useAuthHook";
 
 export default function DashboardLayout() {
   const { role } = useRole();
-  console.log(role?.role);
+  // console.log(role?.role);
+
+  const { user, logOut } = useAuthHook();
+  function handleLogOut() {
+    logOut()
+      .then(() => {
+        console.log("logOut Successfull");
+      })
+      .catch((err) => console.log(err));
+  }
+
   return (
     <div className="drawer lg:drawer-open">
       <input id="my-drawer-4" type="checkbox" className="drawer-toggle" />
@@ -92,6 +103,7 @@ export default function DashboardLayout() {
                 <span className="is-drawer-close:hidden">Be a decorator</span>
               </Link>
             </li>
+            <hr />
 
             {role?.role == "decorator" && (
               <>
@@ -229,6 +241,54 @@ export default function DashboardLayout() {
                   </Link>
                 </li>
               </>
+            )}
+
+            <li>
+              <Link
+                to="/dashboard/be_a_decorator"
+                className="is-drawer-close:tooltip is-drawer-close:tooltip-right"
+                data-tip=" Be a decorator"
+              >
+                {/* Settings icon */}
+                <FaArrowUpWideShort className="my-1.5 inline-block size-4" />
+                <span className="is-drawer-close:hidden">Be a decorator</span>
+              </Link>
+            </li>
+
+            <hr />
+
+            {/* Profile */}
+            {user && (
+              <li>
+                <Link
+                  to="/my_profile"
+                  className="is-drawer-close:tooltip is-drawer-close:tooltip-right"
+                  data-tip={user?.displayName}
+                >
+                  {/*  icon */}
+
+                  <div className="rounded-full my-1.5  inline-block size-4 ">
+                    <img alt="user" src={user?.photoURL} />
+                  </div>
+                  <span className="is-drawer-close:hidden"> My Profile</span>
+                </Link>
+              </li>
+            )}
+
+            {/* Log out */}
+            {user && (
+              <li>
+                <Link
+                  onClick={handleLogOut}
+                  to="/authlayout/login"
+                  className="is-drawer-close:tooltip is-drawer-close:tooltip-right"
+                  data-tip="Log Out"
+                >
+                  {/* Settings icon */}
+                  <IoLogOut className="my-1.5 inline-block size-4" />
+                  <span className="is-drawer-close:hidden">Log Out</span>
+                </Link>
+              </li>
             )}
           </ul>
         </div>

@@ -3,6 +3,7 @@ import React from "react";
 import useAxiosSecure from "../../../Hooks/useAxiosSecure";
 import { FaTrashCan, FaUserCheck } from "react-icons/fa6";
 import { IoPersonRemoveSharp } from "react-icons/io5";
+import Title from "../../../Components/Shared/Title/Title";
 
 export default function ManageDecorator() {
   const axiosSecure = useAxiosSecure();
@@ -20,7 +21,7 @@ export default function ManageDecorator() {
     axiosSecure
       .patch(`/decorators/${Decorator._id}`, updateInfo)
       .then((res) => {
-        console.log("deorator status updatd", res);         
+        console.log("deorator status updatd", res);
         refetch();
       });
   };
@@ -33,9 +34,10 @@ export default function ManageDecorator() {
   };
   return (
     <div>
-      <h2 className="text-5xl">
+      <Title text={` Decorators Pending Approval: ${decorators?.length}`} />
+      {/* <h2 className="text-5xl">
         Decorators Pending Approval: {decorators.length}{" "}
-      </h2>
+      </h2> */}
       <div className="overflow-x-auto">
         <table className="table table-zebra">
           {/* head */}

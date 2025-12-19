@@ -3,12 +3,14 @@ import useAuthHook from "../../../Hooks/useAuthHook";
 import useAxiosSecure from "../../../Hooks/useAxiosSecure";
 import { useQuery } from "@tanstack/react-query";
 import Swal from "sweetalert2";
+import Title from "../../../Components/Shared/Title/Title";
+import Loading from "../../../Components/Shared/Loading/Loading";
 
 export default function MyAssignedServices() {
   const { user } = useAuthHook();
   const axiosSecure = useAxiosSecure();
 
-  const { data, refetch } = useQuery({
+  const { data, refetch, isLoading } = useQuery({
     queryKey: ["services", user?.email, "decorator_assigned"],
     queryFn: async () => {
       const res = await axiosSecure.get(
@@ -22,12 +24,10 @@ export default function MyAssignedServices() {
   const handleDeliveryStatusUpdate = (parcel, status) => {
     const statusInfo = {
       deliveryStatus: status,
-      decoratorId: parcel.riderId,
+      decoratorId: parcel.decoratorId,
     };
 
-    let message = `Services Status is updated with ${status
-      .split("_")
-      .join(" ")}`;
+    let message = `Services Status is updated `;
 
     axiosSecure
       .patch(`/bookings/${parcel._id}/status`, statusInfo)
@@ -45,10 +45,15 @@ export default function MyAssignedServices() {
       });
   };
 
-  console.log(data);
+  // console.log(data);
+
+  if (isLoading) {
+    return <Loading></Loading>;
+  }
   return (
     <div>
-      <h2 className="text-4xl">Parcels Pending Pickup: {data?.length}</h2>
+      <Title text={`Decoration Pending : ${data?.length}`} />
+      {/* <h2 className="text-4xl">Parcels Pending Pickup: {data?.length}</h2> */}
 
       <div className="overflow-x-auto">
         <table className="table table-zebra">
@@ -89,7 +94,36 @@ export default function MyAssignedServices() {
                       <span>Accepted</span>
                     )}
                   </td>
-                  <td className=" flex flex-col  gap-4 ">
+
+                  <td>
+                    <select
+                      className="select select-bordered select-primary w-full max-w-xs"
+                      defaultValue={booking.deliveryStatus}
+                      onChange={(e) =>
+                        handleDeliveryStatusUpdate(booking, e.target.value)
+                      }
+                    >
+                      <option disabled value="">
+                        Update Service Status
+                      </option>
+
+                      <option value="materials_prepared">
+                        Materials Prepared
+                      </option>
+
+                      <option value="on_the_way_vanue">
+                        On the way to Venue
+                      </option>
+
+                      <option value="setup_in_porgress">
+                        Setup in Progress
+                      </option>
+
+                      <option value="completed">Completed</option>
+                    </select>
+                  </td>
+
+                  {/* <td className=" flex flex-col  gap-4 ">
                     <button
                       onClick={() =>
                         handleDeliveryStatusUpdate(
@@ -125,7 +159,7 @@ export default function MyAssignedServices() {
                     >
                       completed
                     </button>
-                  </td>
+                  </td> */}
                 </tr>
               ))}
           </tbody>

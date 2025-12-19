@@ -5,6 +5,7 @@ import Swal from "sweetalert2";
 import { FaUserShield } from "react-icons/fa6";
 import { FiShieldOff } from "react-icons/fi";
 import Loading from "../../../Components/Shared/Loading/Loading";
+import Title from "../../../Components/Shared/Title/Title";
 export default function ManageUsers() {
   const axiosSecure = useAxiosSecure();
   const [searchText, setSearchText] = useState("");
@@ -61,11 +62,12 @@ export default function ManageUsers() {
   };
   return (
     <div>
-      <h2 className="text-4xl">Total Users: {users.length}</h2>
-      <p>search text: {searchText}</p>
-      <label className="input">
+      <Title text={`Total Users : ${users?.length}`} />
+      {/* <h2 className="text-4xl">Total Users: {users.length}</h2> */}
+
+      <label className="input w-full">
         <svg
-          className="h-[1em] opacity-50"
+          className="h-[1em] opacity-50 "
           xmlns="http://www.w3.org/2000/svg"
           viewBox="0 0 24 24"
         >
@@ -83,7 +85,7 @@ export default function ManageUsers() {
         <input
           onChange={(e) => setSearchText(e.target.value)}
           type="search"
-          className="grow"
+          className="grow  "
           placeholder="Search users"
         />
       </label>

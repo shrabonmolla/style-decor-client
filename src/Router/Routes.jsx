@@ -25,6 +25,9 @@ import AssignDecorator from "../Pages/Dashboard/Admin/AssignDecorator";
 import MyAssignedServices from "../Pages/Dashboard/Decorator/MyAssignedServices";
 import CompletedServices from "../Pages/Dashboard/Decorator/CompletedServices";
 import HomeDashboard from "../Pages/Dashboard/Home/HomeDashboard";
+import PrivateRoute from "./PrivateRoute";
+import AdminRoute from "./AdminRoute";
+import DecoratorRoute from "./DecoratorRoute";
 
 export const router = createBrowserRouter([
   {
@@ -50,15 +53,27 @@ export const router = createBrowserRouter([
       },
       {
         path: "/my_profile",
-        element: <MyProfile />,
+        element: (
+          <PrivateRoute>
+            <MyProfile />
+          </PrivateRoute>
+        ),
       },
       {
         path: "/update_profile",
-        element: <UpdateProfile />,
+        element: (
+          <PrivateRoute>
+            <UpdateProfile />
+          </PrivateRoute>
+        ),
       },
       {
         path: "/view_details/:id",
-        element: <ViewDetails />,
+        element: (
+          <PrivateRoute>
+            <ViewDetails />
+          </PrivateRoute>
+        ),
       },
     ],
   },
@@ -82,7 +97,11 @@ export const router = createBrowserRouter([
   // dashboard layout
   {
     path: "/dashboard",
-    element: <DashboardLayout />,
+    element: (
+      <PrivateRoute>
+        <DashboardLayout />
+      </PrivateRoute>
+    ),
     children: [
       {
         path: "/dashboard",
@@ -95,35 +114,67 @@ export const router = createBrowserRouter([
       },
       {
         path: "my_assigned_services",
-        element: <MyAssignedServices />,
+        element: (
+          <DecoratorRoute>
+            <MyAssignedServices />
+          </DecoratorRoute>
+        ),
       },
       {
         path: "my_completed_services",
-        element: <CompletedServices />,
+        element: (
+          <DecoratorRoute>
+            <CompletedServices />
+          </DecoratorRoute>
+        ),
       },
       {
         path: "create_service",
-        element: <CreateService />,
+        element: (
+          <AdminRoute>
+            <CreateService />
+          </AdminRoute>
+        ),
       },
       {
         path: "manage_service",
-        element: <ManageService />,
+        element: (
+          <AdminRoute>
+            <ManageService />
+          </AdminRoute>
+        ),
       },
       {
         path: "manage_decorator",
-        element: <ManageDecorator />,
+        element: (
+          <AdminRoute>
+            <ManageDecorator />
+          </AdminRoute>
+        ),
       },
       {
         path: "manage_users",
-        element: <ManageUsers />,
+        element: (
+          <AdminRoute>
+            <ManageUsers />
+          </AdminRoute>
+        ),
       },
       {
         path: "assign_decorators",
-        element: <AssignDecorator />,
+        element: (
+          <AdminRoute>
+            <AssignDecorator />
+          </AdminRoute>
+        ),
       },
       {
         path: "update_service/:id",
-        element: <UpdateService />,
+        element: (
+          <AdminRoute>
+            <UpdateService />
+          </AdminRoute>
+        ),
       },
 
       {

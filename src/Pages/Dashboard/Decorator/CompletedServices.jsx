@@ -2,12 +2,14 @@ import React from "react";
 import useAuthHook from "../../../Hooks/useAuthHook";
 import useAxiosSecure from "../../../Hooks/useAxiosSecure";
 import { useQuery } from "@tanstack/react-query";
+import Title from "../../../Components/Shared/Title/Title";
+import Loading from "../../../Components/Shared/Loading/Loading";
 
 export default function CompletedServices() {
   const { user } = useAuthHook();
   const axiosSecure = useAxiosSecure();
 
-  const { data } = useQuery({
+  const { data, isLoading } = useQuery({
     queryKey: ["services", user?.email, "completed"],
     queryFn: async () => {
       const res = await axiosSecure.get(
@@ -23,9 +25,14 @@ export default function CompletedServices() {
     return service.serviceCost * 0.6;
   };
 
+  if (isLoading) {
+    return <Loading></Loading>;
+  }
+
   return (
     <div>
-      <h2 className="text-4xl">Completed Deliveries: {data?.length}</h2>
+      <Title text={` My Completed Decoration : ${data?.length}`} />
+
       <div className="overflow-x-auto">
         <table className="table table-zebra">
           {/* head */}
@@ -45,7 +52,7 @@ export default function CompletedServices() {
               data.map((service, index) => (
                 <tr key={service._id}>
                   <th>{index + 1}</th>
-                  <td>{service.serviceCost}</td>
+                  <td>{service.serviceName}</td>
                   <td>{service.date}</td>
                   <td>{service.location}</td>
                   <td>{service.serviceCost}</td>

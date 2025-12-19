@@ -5,6 +5,7 @@ import { Link } from "react-router";
 import useAxiosSecure from "../../../Hooks/useAxiosSecure";
 import toast from "react-hot-toast";
 import Loading from "../../../Components/Shared/Loading/Loading";
+import Title from "../../../Components/Shared/Title/Title";
 
 export default function ManageService() {
   const axiosSecure = useAxiosSecure();
@@ -36,7 +37,8 @@ export default function ManageService() {
   // console.log(data);
   return (
     <div>
-      <div className="text-5xl font-bold">Total Services :{data.length} </div>
+      <Title text={`Total Services : ${data?.length}`} />
+      {/* <div className="text-5xl font-bold">Total Services :{data.length} </div> */}
       <div className="overflow-x-auto">
         <table className="table table-zebra">
           {/* head */}
@@ -67,7 +69,7 @@ export default function ManageService() {
                       </Link>
                       <button
                         onClick={() => handleDeleteService(service._id)}
-                        className="btn btn-square btn-error"
+                        className="btn btn-square btn-error text-white"
                       >
                         <MdOutlineDelete />
                       </button>

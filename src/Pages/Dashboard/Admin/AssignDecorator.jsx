@@ -2,13 +2,19 @@ import React, { useRef, useState } from "react";
 import Swal from "sweetalert2";
 import useAxiosSecure from "../../../Hooks/useAxiosSecure";
 import { useQuery } from "@tanstack/react-query";
+import Loading from "../../../Components/Shared/Loading/Loading";
+import Title from "../../../Components/Shared/Title/Title";
 
 export default function AssignDecorator() {
   const axiosSecure = useAxiosSecure();
   const riderModalRef = useRef();
   const [selectedParcel, setSelectedParcel] = useState(null);
 
-  const { data: parcels = [], refetch: parcelsRefetch } = useQuery({
+  const {
+    data: parcels = [],
+    refetch: parcelsRefetch,
+    isLoading: loadingBookings,
+  } = useQuery({
     queryKey: ["bookings", "pending-pickup"],
     queryFn: async () => {
       const res = await axiosSecure.get(
@@ -61,9 +67,14 @@ export default function AssignDecorator() {
       });
   };
 
+  if (loadingBookings) {
+    return <Loading />;
+  }
+
   return (
     <div>
-      <h2 className="text-5xl">Assign Decorators: {parcels.length}</h2>
+      <Title text={`Assign Decorators : ${parcels?.length}`} />
+      {/* <h2 className="text-5xl">Assign Decorators: {parcels.length}</h2> */}
       <div className="overflow-x-auto">
         <table className="table table-zebra">
           {/* head */}
@@ -88,7 +99,7 @@ export default function AssignDecorator() {
                 <td>
                   <button
                     onClick={() => openAssignRiderModal(parcel)}
-                    className="btn btn-primary text-black"
+                    className="btn btn-primary text-white"
                   >
                     Find Riders
                   </button>
@@ -125,7 +136,7 @@ export default function AssignDecorator() {
                       <td>
                         <button
                           onClick={() => handleAssignRider(decorator)}
-                          className="btn btn-primary text-black"
+                          className="btn btn-primary text-white"
                         >
                           Assign
                         </button>
