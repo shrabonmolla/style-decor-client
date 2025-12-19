@@ -3,18 +3,27 @@ import React, { useState } from "react";
 import useAxiosSecure from "../../../Hooks/useAxiosSecure";
 import Swal from "sweetalert2";
 import { FaUserShield } from "react-icons/fa6";
-import { FiShieldOff } from 'react-icons/fi';
+import { FiShieldOff } from "react-icons/fi";
+import Loading from "../../../Components/Shared/Loading/Loading";
 export default function ManageUsers() {
   const axiosSecure = useAxiosSecure();
   const [searchText, setSearchText] = useState("");
 
-  const { refetch, data: users = [] } = useQuery({
+  const {
+    refetch,
+    data: users = [],
+    isLoading,
+  } = useQuery({
     queryKey: ["users", searchText],
     queryFn: async () => {
       const res = await axiosSecure.get(`/users?searchText=${searchText}`);
       return res.data;
     },
   });
+
+  if (isLoading) {
+    return <Loading />;
+  }
 
   const handleMakeAdmin = (user) => {
     const roleInfo = { role: "admin" };
@@ -52,7 +61,7 @@ export default function ManageUsers() {
   };
   return (
     <div>
-      <h2 className="text-4xl">Manage Users: {users.length}</h2>
+      <h2 className="text-4xl">Total Users: {users.length}</h2>
       <p>search text: {searchText}</p>
       <label className="input">
         <svg
@@ -88,7 +97,6 @@ export default function ManageUsers() {
               <th>Email</th>
               <th>Role</th>
               <th>Admin Action</th>
-              <th>Others Actions</th>
             </tr>
           </thead>
           <tbody>
@@ -130,7 +138,6 @@ export default function ManageUsers() {
                     </button>
                   )}
                 </td>
-                <th>Actions</th>
               </tr>
             ))}
           </tbody>

@@ -3,10 +3,19 @@ import { useForm } from "react-hook-form";
 import toast from "react-hot-toast";
 import useAxiosSecure from "../../../Hooks/useAxiosSecure";
 import { ImageUpload } from "../../../Utils/ImageUPload";
+import { useNavigate } from "react-router";
+import useAuthHook from "../../../Hooks/useAuthHook";
 
 export default function CreateService() {
   const axiosSecure = useAxiosSecure();
-  const { register, handleSubmit } = useForm();
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm();
+  const navigate = useNavigate();
+
+  const { user } = useAuthHook();
 
   // handleCreateServices
   async function handleCreateServices(formData) {
@@ -25,19 +34,18 @@ export default function CreateService() {
       .then((res) => {
         console.log("Services added successfully", res.data);
         toast.success("Services added successfully");
+        navigate("/dashboard/manage_service");
       })
       .catch((err) => console.log(err));
   }
 
   return (
-    <div className="hero bg-base-200 min-h-screen">
+    <div className="hero  min-h-screen">
       <div className="hero-content flex-col lg:flex-row-reverse">
         <div className="text-center lg:text-left">
           <h1 className="text-5xl font-bold">Create Service</h1>
           <p className="py-6">
-            Provident cupiditate voluptatem et in. Quaerat fugiat ut assumenda
-            excepturi exercitationem quasi. In deleniti eaque aut repudiandae et
-            a id nisi.
+            Complete the form to register a new service in the system.
           </p>
         </div>
         <div className="card bg-base-100 w-full max-w-sm shrink-0 shadow-2xl">
@@ -49,24 +57,30 @@ export default function CreateService() {
               {/* service Photo */}
               <label className="label"> Upload a Service Photo</label>
               <input
-                {...register("photo")}
+                {...register("photo", { required: true })}
                 type="file"
                 className="file-input"
               />
+              {errors.photo && (
+                <span className="text-red-400">This field is required</span>
+              )}
               {/* service_name */}
               <label className="label">service name</label>
               <input
-                {...register("serviceName")}
+                {...register("serviceName", { required: true })}
                 type="text"
                 className="input"
                 placeholder="service_name"
               />
+              {errors.serviceName && (
+                <span className="text-red-400">This field is required</span>
+              )}
 
               {/* service category */}
               <fieldset className="fieldset">
                 <legend className="fieldset-legend">service category</legend>
                 <select
-                  {...register("serviceCategory")}
+                  {...register("serviceCategory", { required: true })}
                   defaultValue="Pick a browser"
                   className="select"
                 >
@@ -78,29 +92,38 @@ export default function CreateService() {
                   <option>Meeting</option>
                 </select>
               </fieldset>
+              {errors.serviceCategory && (
+                <span className="text-red-400">This field is required</span>
+              )}
 
               {/* description */}
               <label className="label">Description</label>
               <textarea
-                {...register("serviceDescription")}
+                {...register("serviceDescription", { required: true })}
                 className="textarea"
                 placeholder="Description"
               ></textarea>
+              {errors.serviceDescription && (
+                <span className="text-red-400">This field is required</span>
+              )}
 
               {/* cost */}
               <label className="label">cost</label>
               <input
-                {...register("serviceCost")}
+                {...register("serviceCost", { required: true })}
                 type="number"
                 className="input"
                 placeholder="cost"
               />
+              {errors.serviceCost && (
+                <span className="text-red-400">This field is required</span>
+              )}
 
               {/* Unit */}
               <fieldset className="fieldset">
                 <legend className="fieldset-legend">Unit</legend>
                 <select
-                  {...register("unit")}
+                  {...register("unit", { required: true })}
                   defaultValue="Pick a browser"
                   className="select"
                 >
@@ -108,17 +131,25 @@ export default function CreateService() {
                   <option>Per Sqrt-fit</option>
                   <option>Per Floor</option>
                   <option>Per Meter</option>
+                  <option>Per Hour</option>
                 </select>
               </fieldset>
+              {errors.unit && (
+                <span className="text-red-400">This field is required</span>
+              )}
 
               {/* created by email */}
               <label className="label">creted by </label>
               <input
-                {...register("createdBy")}
+                {...register("createdBy", { required: true })}
                 type="email"
                 className="input"
                 placeholder="email"
+                defaultValue={user?.email}
               />
+              {errors.createdBy && (
+                <span className="text-red-400">This field is required</span>
+              )}
 
               <button className="btn btn-neutral mt-4">Create Service</button>
             </form>

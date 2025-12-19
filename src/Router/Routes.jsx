@@ -24,6 +24,7 @@ import ManageUsers from "../Pages/Dashboard/Admin/ManageUsers";
 import AssignDecorator from "../Pages/Dashboard/Admin/AssignDecorator";
 import MyAssignedServices from "../Pages/Dashboard/Decorator/MyAssignedServices";
 import CompletedServices from "../Pages/Dashboard/Decorator/CompletedServices";
+import HomeDashboard from "../Pages/Dashboard/Home/HomeDashboard";
 
 export const router = createBrowserRouter([
   {
@@ -83,6 +84,10 @@ export const router = createBrowserRouter([
     path: "/dashboard",
     element: <DashboardLayout />,
     children: [
+      {
+        path: "/dashboard",
+        element: <HomeDashboard />,
+      },
       {
         path: "be_a_decorator",
         element: <BeADecorator />,

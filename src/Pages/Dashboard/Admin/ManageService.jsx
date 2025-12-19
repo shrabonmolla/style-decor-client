@@ -18,6 +18,10 @@ export default function ManageService() {
     },
   });
 
+  if (isPending) {
+    return <Loading />;
+  }
+
   // handleDeleteService
   function handleDeleteService(id) {
     axiosSecure
@@ -32,7 +36,7 @@ export default function ManageService() {
   // console.log(data);
   return (
     <div>
-      <div className="text-5xl font-bold">All Services : </div>
+      <div className="text-5xl font-bold">Total Services :{data.length} </div>
       <div className="overflow-x-auto">
         <table className="table table-zebra">
           {/* head */}

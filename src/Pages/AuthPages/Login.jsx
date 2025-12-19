@@ -1,5 +1,5 @@
 import React from "react";
-import { Link } from "react-router";
+import { Link, useNavigate } from "react-router";
 import SocialLogin from "../../Components/Shared/SocialLogin/SocialLogin";
 import toast from "react-hot-toast";
 import useAuthHook from "../../Hooks/useAuthHook";
@@ -7,12 +7,14 @@ import { useForm } from "react-hook-form";
 
 export default function Login() {
   const { logIn } = useAuthHook();
+  const navigate = useNavigate();
   const { register, handleSubmit } = useForm();
   // handleLogin
   function handleLogin(data) {
     logIn(data.email, data.password)
       .then(() => {
         toast.success("login successfull");
+        navigate("/");
       })
       .catch((err) => console.log(err));
   }

@@ -5,7 +5,7 @@ import { ImageUpload } from "../../../Utils/ImageUPload";
 import useAuthHook from "../../../Hooks/useAuthHook";
 
 import toast from "react-hot-toast";
-import { useLoaderData } from "react-router";
+import { useLoaderData, useNavigate } from "react-router";
 
 export default function BeADecorator() {
   const axiosSecure = useAxiosSecure();
@@ -16,6 +16,7 @@ export default function BeADecorator() {
     // formState: { errors }
   } = useForm();
   const { user } = useAuthHook();
+  const navigate = useNavigate();
 
   const serviceCenters = useLoaderData();
   const regionsDuplicate = serviceCenters.map((c) => c.region);
@@ -47,6 +48,7 @@ export default function BeADecorator() {
       .then((res) => {
         console.log("decorators added successfully", res.data);
         toast.success("decorators added successfully");
+        navigate("/dashboard");
       })
       .catch((err) => console.log(err));
   }
@@ -90,6 +92,7 @@ export default function BeADecorator() {
                 type="email"
                 className="input"
                 placeholder="email"
+                defaultValue={user?.email}
               />
 
               {/* decorator region */}

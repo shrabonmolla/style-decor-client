@@ -1,5 +1,5 @@
 import React, { useRef } from "react";
-import { useParams } from "react-router";
+import { useNavigate, useParams } from "react-router";
 import { useQuery } from "@tanstack/react-query";
 import { useForm } from "react-hook-form";
 import toast from "react-hot-toast";
@@ -14,6 +14,7 @@ export default function ViewDetails() {
   const axiosSecure = useAxiosSecure();
   const bookRef = useRef();
   const { user } = useAuthHook();
+  const navigate = useNavigate();
 
   // Fetch service details
   const { data, isLoading } = useQuery({
@@ -49,6 +50,7 @@ export default function ViewDetails() {
       .then(() => {
         toast.success("Service booked successfully!");
         bookRef.current.close();
+        navigate("/dashboard/my_bookings");
       })
       .catch(() => {
         toast.error("Failed to book service");

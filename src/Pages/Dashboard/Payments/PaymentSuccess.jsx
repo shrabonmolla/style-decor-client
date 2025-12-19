@@ -1,6 +1,7 @@
 import React, { useEffect } from "react";
-import { useSearchParams } from "react-router";
+import { Link, useSearchParams } from "react-router";
 import useAxiosSecure from "../../../Hooks/useAxiosSecure";
+import Title from "../../../Components/Shared/Title/Title";
 export default function PaymentSuccess() {
   const axiosSecure = useAxiosSecure();
   const [searchParams] = useSearchParams();
@@ -13,8 +14,8 @@ export default function PaymentSuccess() {
   }, [sessionId]);
 
   return (
-    <div>
-      <h1>PaymentSuccess</h1>
+    <div className="mx-auto text-center">
+      <Title text="Payment Successful" />
     </div>
   );
 }

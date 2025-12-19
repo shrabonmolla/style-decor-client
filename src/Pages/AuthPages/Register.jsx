@@ -1,5 +1,5 @@
 import React from "react";
-import { Link } from "react-router";
+import { Link, useNavigate } from "react-router";
 import SocialLogin from "../../Components/Shared/SocialLogin/SocialLogin";
 import useAuthHook from "../../Hooks/useAuthHook";
 import toast from "react-hot-toast";
@@ -10,6 +10,7 @@ export default function Register() {
   const { registerUser, userProflieUpdate } = useAuthHook();
   const { register, handleSubmit } = useForm();
   const axiosSecure = useAxiosSecure();
+  const navigate = useNavigate();
 
   // handleRegister
   function handleRegister(formData) {
@@ -54,7 +55,10 @@ export default function Register() {
 
             // 4.updating user profile
             userProflieUpdate(profileData)
-              .then(() => toast.success("profile created successfully"))
+              .then(() => {
+                toast.success("profile created successfully");
+                navigate("/authlayout/login");
+              })
               .catch((err) => console.log(err));
           })
           .catch((err) => console.log(err));

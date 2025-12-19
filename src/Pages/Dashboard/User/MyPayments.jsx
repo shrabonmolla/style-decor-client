@@ -3,18 +3,22 @@ import React from "react";
 import useAuthHook from "../../../Hooks/useAuthHook";
 import useAxiosSecure from "../../../Hooks/useAxiosSecure";
 import { Link } from "react-router";
+import Loading from "../../../Components/Shared/Loading/Loading";
 
 export default function MyPayments() {
   const { user } = useAuthHook();
   const axiosSecure = useAxiosSecure();
-  const { data } = useQuery({
+  const { data, isLoading } = useQuery({
     queryKey: ["payments", user?.email],
     queryFn: async () => {
       const res = await axiosSecure.get(`/payments?email=${user?.email}`);
       return res.data;
     },
   });
-  console.log(data);
+  // console.log(data);
+  if (isLoading) {
+    return <Loading />;
+  }
   return (
     <div className="overflow-x-auto rounded-box border border-base-content/5 bg-base-100">
       <table className="table">
