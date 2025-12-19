@@ -1,12 +1,12 @@
 import React, { useRef } from "react";
-import useAxiosSecure from "../../../Hooks/useAxiosSecure";
-import { useQuery } from "@tanstack/react-query";
 import { useParams } from "react-router";
-import useAuthHook from "../../../Hooks/useAuthHook";
-import { DayPicker } from "react-day-picker";
-import "react-day-picker/style.css";
+import { useQuery } from "@tanstack/react-query";
 import { useForm } from "react-hook-form";
 import toast from "react-hot-toast";
+
+import useAxiosSecure from "../../../Hooks/useAxiosSecure";
+import useAuthHook from "../../../Hooks/useAuthHook";
+import Loading from "../../../Components/Shared/Loading/Loading";
 
 export default function ViewDetails() {
   const { register, handleSubmit } = useForm();
@@ -14,139 +14,176 @@ export default function ViewDetails() {
   const axiosSecure = useAxiosSecure();
   const bookRef = useRef();
   const { user } = useAuthHook();
-  //   const [selected, setSelected] = useState();
 
-  // getting services data form backend
-  const { data } = useQuery({
-    queryKey: ["services_detials", id],
+  // Fetch service details
+  const { data, isLoading } = useQuery({
+    queryKey: ["services_details", id],
     queryFn: async () => {
       const res = await axiosSecure.get(`/services/${id}`);
       return res.data;
     },
   });
-  console.log(data);
+
+  if (isLoading) {
+    return <Loading />;
+  }
+
   const {
     serviceName,
     serviceCategory,
     serviceCost,
     photo,
-
     serviceDescription,
-
     unit,
   } = data || {};
 
-  //   handleOpenModal
-  function handleOpenModal() {
+  // Open modal
+  const handleOpenModal = () => {
     bookRef.current.showModal();
-  }
+  };
 
-  //   handleBookService
-  function handleBookService(bookingData) {
-    // console.log(bookingData);
+  // Book service
+  const handleBookService = (bookingData) => {
     axiosSecure
-      .post(`/bookings `, bookingData)
-      .then((res) => {
-        console.log("you booked this services", res);
-        toast.success("you booked this services")
+      .post("/bookings", bookingData)
+      .then(() => {
+        toast.success("Service booked successfully!");
+        bookRef.current.close();
       })
-      .catch((err) => console.log(err));
-  }
+      .catch(() => {
+        toast.error("Failed to book service");
+      });
+  };
+
   return (
-    <div>
-      <div className="hero bg-base-200 min-h-screen">
-        <div className="hero-content flex-col lg:flex-row">
-          <img src={photo} className="max-w-sm rounded-lg shadow-2xl" />
-          <div>
-            <h1 className="text-5xl font-bold">{serviceName}</h1>
-            <p className="py-6">{serviceCost}</p>
-            <p className="py-6">{serviceDescription}</p>
-            <p className="py-6">{serviceCategory}</p>
-            <p className="py-6">{unit}</p>
-            <button onClick={handleOpenModal} className="btn btn-primary">
-              Book Now
-            </button>
+    <>
+      {/* ===== SERVICE DETAILS ===== */}
+      <div className="min-h-screen w-full px-4 sm:px-6 py-10">
+        <div className="max-w-6xl mx-auto">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-10 items-start">
+            {/* Image */}
+            <div>
+              <img
+                src={photo}
+                alt={serviceName}
+                loading="lazy"
+                className="w-full max-h-[420px] object-cover rounded-2xl shadow-md"
+              />
+            </div>
+
+            {/* Details */}
+            <div className="flex flex-col">
+              <span className="text-sm font-semibold text-[#023e8a] uppercase">
+                {serviceCategory}
+              </span>
+
+              <h1 className="text-3xl sm:text-4xl font-bold text-[#03045e] mt-2">
+                {serviceName}
+              </h1>
+
+              {/* ✅ FIXED DESCRIPTION */}
+              <div className="mt-4 max-h-48 md:max-h-60 overflow-y-auto rounded-xl border border-base-300 p-4">
+                <p className="text-gray-600 leading-relaxed break-words">
+                  {serviceDescription}
+                </p>
+              </div>
+
+              <div className="mt-6 space-y-3">
+                <p className="text-lg font-semibold text-[#03045e]">
+                  💰 Price:
+                  <span className="text-gray-700 ml-2">{serviceCost}</span>
+                </p>
+                <p className="text-lg font-semibold text-[#03045e]">
+                  📦 Unit:
+                  <span className="text-gray-700 ml-2">{unit}</span>
+                </p>
+              </div>
+
+              <button
+                onClick={handleOpenModal}
+                className="mt-8 bg-[#03045e] hover:bg-[#023e8a] text-white px-8 py-3 rounded-xl font-semibold transition"
+              >
+                Book This Service
+              </button>
+            </div>
           </div>
         </div>
       </div>
 
-      {/* Open the modal using document.getElementById('ID').showModal() method */}
+      {/* ===== BOOKING MODAL ===== */}
       <dialog ref={bookRef} className="modal modal-bottom sm:modal-middle">
-        <div className="modal-box">
-          <form onSubmit={handleSubmit(handleBookService)}>
-            {/* user and service info */}
-            <fieldset className="fieldset flex ">
-              <div>
-                {/* name */}
-                <label className="label">Name</label>
-                <input
-                  {...register("name")}
-                  defaultValue={user?.displayName}
-                  type="text"
-                  className="input"
-                  placeholder="Name"
-                />
-                {/* email */}
-                <label className="label">Email</label>
-                <input
-                  {...register("email")}
-                  defaultValue={user?.email}
-                  type="email"
-                  className="input"
-                  placeholder="Email"
-                />
-              </div>
+        <div className="modal-box rounded-2xl">
+          <h3 className="text-2xl font-bold text-[#03045e] mb-4">
+            Book Service
+          </h3>
 
-              <div>
-                {/* name */}
-                <label className="label">service Name</label>
-                <input
-                  {...register("serviceName")}
-                  defaultValue={serviceName}
-                  type="text"
-                  className="input"
-                  placeholder="Name"
-                />
-                {/* email */}
-                <label className="label">service Cost</label>
-                <input
-                  {...register("serviceCost")}
-                  defaultValue={serviceCost}
-                  type="number"
-                  className="input"
-                  placeholder="Email"
-                />
-              </div>
-            </fieldset>
-            {/* date and locaiton */}
-            <div className="flex flex-col-reverse">
-              <input {...register("date")} type="date" />
-              <textarea
-                {...register("location")}
-                className="textarea w-full"
-                placeholder="Location"
-              ></textarea>
+          <form
+            onSubmit={handleSubmit(handleBookService)}
+            className="space-y-4"
+          >
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <input
+                {...register("name")}
+                defaultValue={user?.displayName}
+                className="input input-bordered w-full"
+                placeholder="Your Name"
+                required
+              />
+
+              <input
+                {...register("email")}
+                defaultValue={user?.email}
+                className="input input-bordered w-full"
+                placeholder="Email"
+                required
+              />
             </div>
-            <button className="btn btn-neutral mt-4">Book Now</button>
-            {/* <DayPicker
-              mode="single"
-              selected={selected}
-              onSelect={setSelected}
-              footer={
-                selected
-                  ? `Selected: ${selected.toLocaleDateString()}`
-                  : "Pick a day."
-              }
-            /> */}
+
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <input
+                {...register("serviceName")}
+                defaultValue={serviceName}
+                className="input input-bordered w-full"
+                readOnly
+              />
+
+              <input
+                {...register("serviceCost")}
+                defaultValue={serviceCost}
+                className="input input-bordered w-full"
+                readOnly
+              />
+            </div>
+
+            <input
+              {...register("date")}
+              type="date"
+              className="input input-bordered w-full"
+              required
+            />
+
+            <textarea
+              {...register("location")}
+              className="textarea textarea-bordered w-full"
+              placeholder="Service Location"
+              required
+            ></textarea>
+
+            <button
+              type="submit"
+              className="w-full bg-[#03045e] hover:bg-[#023e8a] text-white py-3 rounded-xl font-semibold"
+            >
+              Confirm Booking
+            </button>
           </form>
+
           <div className="modal-action">
             <form method="dialog">
-              {/* if there is a button in form, it will close the modal */}
-              <button className="btn">Close</button>
+              <button className="btn btn-ghost">Cancel</button>
             </form>
           </div>
         </div>
       </dialog>
-    </div>
+    </>
   );
 }

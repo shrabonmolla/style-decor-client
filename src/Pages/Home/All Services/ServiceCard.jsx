@@ -4,30 +4,38 @@ import { Link } from "react-router";
 export default function ServiceCard({ service }) {
   const { serviceName, serviceCategory, serviceCost, photo, _id } =
     service || {};
+
   return (
-    <div className="card  shadow-sm m-2">
-      <div className="card-body">
-        <span className="badge badge-xs badge-warning">{serviceCategory}</span>
-        <div className="flex justify-between">
-          <h2 className="text-3xl font-bold">{serviceName}</h2>
-          <span className="text-xl">{`${serviceCost}/=`}</span>
+    <Link
+      to={`/view_details/${_id}`}
+      className="card bg-base-100 shadow-sm w-full"
+    >
+      {/* Image */}
+      <figure className="w-full">
+        <img
+          src={photo}
+          alt={serviceName}
+          loading="lazy"
+          className="w-full h-48 sm:h-56 object-cover"
+        />
+      </figure>
+
+      {/* Body */}
+      <div className="card-body p-4">
+        {/* Title + Price */}
+        <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2">
+          <h2 className="text-lg font-bold break-words">{serviceName}</h2>
+
+          <div className="badge bg-[#03045e] border-0 text-white whitespace-nowrap">
+            BDT {serviceCost}
+          </div>
         </div>
-        <figure className="">
-          <img
-            src={photo}
-            alt="Shoes"
-            className="rounded-xl h-50 w-full object-cover"
-          />
-        </figure>
-        <div className="mt-6">
-          <Link
-            to={`/view_details/${_id}`}
-            className="btn btn-primary btn-block"
-          >
-            View Details
-          </Link>
+
+        {/* Category */}
+        <div className="mt-2">
+          <div className="badge badge-outline">{serviceCategory}</div>
         </div>
       </div>
-    </div>
+    </Link>
   );
 }
