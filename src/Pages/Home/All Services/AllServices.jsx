@@ -24,7 +24,7 @@ export default function AllServices() {
         text="Our Decoration Services"
         subText="Beautiful, affordable decoration solutions for every local event"
       />
-      <section className="grid grid-cols-2 md:grid-cols-4  p-6 gap-4">
+      <section className="grid grid-cols-2 md:grid-cols-4  w-11/12 mx-auto my-6 gap-4">
         {data && data.map((service) => <ServiceCard service={service} />)}
       </section>
     </div>
