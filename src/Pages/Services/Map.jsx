@@ -2,6 +2,7 @@ import React, { useRef } from "react";
 import { MapContainer, TileLayer, Marker, Popup } from "react-leaflet";
 import "leaflet/dist/leaflet.css";
 import { LoaderIcon } from "react-hot-toast";
+import Title from "../../Components/Shared/Title/Title";
 export default function Map({ serviceCenters }) {
   const position = [23.8041, 90.4152];
   console.log(serviceCenters);
@@ -18,14 +19,15 @@ export default function Map({ serviceCenters }) {
 
     if (matchedLoacation) {
       const coord = [matchedLoacation.latitude, matchedLoacation.longitude];
-      mapRef.current.flyTo(coord, 11);
+      mapRef.current.flyTo(coord, 10);
     }
   }
   return (
-    <div className="mx-auto flex flex-col items-center">
-      <h1 className="text-4xl font-bold text-center py-6">
+    <div className="mx-auto flex flex-col items-center ">
+      <Title text="All Our Service Center" />
+      {/* <<h1 className="text-4xl font-bold text-center py-6">
         All Our Service Center
-      </h1>
+      </h1> */}
 
       {/* search bar */}
 
@@ -53,7 +55,7 @@ export default function Map({ serviceCenters }) {
 
       <MapContainer
         ref={mapRef}
-        className="h-[600px] w-[90%]  "
+        className="h-[600px] w-[90%] rounded-4xl "
         center={position}
         zoom={8}
         scrollWheelZoom={false}

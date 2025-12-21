@@ -4,7 +4,7 @@ import useAuthHook from "./useAuthHook";
 import { useNavigate } from "react-router";
 
 const axiosSecure = axios.create({
-  baseURL: `http://localhost:3000`,
+  baseURL: `https://style-decor-server-neon.vercel.app`,
 });
 
 export default function useAxiosSecure() {

@@ -1,16 +1,142 @@
-# React + Vite
+# 🎨 StyleDecor – Smart Home & Ceremony Decoration Booking System
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## 📌 Project Purpose
 
-Currently, two official plugins are available:
+StyleDecor is a modern, full-stack appointment and booking management system for local home and ceremony decoration businesses.  
+It enables users to explore decoration services, book consultations or on-site services, make secure payments, and track project progress in real time—while providing powerful dashboards for admins and decorators.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+This project is designed to demonstrate real-world problem solving, system design, UI/UX sense, and MERN stack expertise.
 
-## React Compiler
+---
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+## 🌐 Live Website
 
-## Expanding the ESLint configuration
+🔗 **Client:** https://your-client-live-link.com  
+🔗 **Server:** https://your-server-live-link.com
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+---
+
+## 🔐 Admin Credentials
+
+- **Email:** admin@styledecor.com
+- **Password:** Admin@123
+
+---
+
+## 🚀 Key Features
+
+### 👤 User Features
+
+- Browse decoration services & packages
+- Search & filter services by:
+  - Service name
+  - Category
+  - Budget range
+- View service details (open route)
+- Book consultation or decoration service (protected)
+- Select date, time & location
+- Online payment using Stripe
+- View booking history
+- Cancel or update bookings
+- Track on-site service status step-by-step
+- View payment history & receipts
+- Mobile responsive experience
+
+---
+
+### 🛠️ Admin Features
+
+- Secure admin dashboard
+- Manage decorators (CRUD)
+- Approve / disable decorator accounts
+- Manage services & packages (CRUD)
+- Assign decorators for on-site services
+- Monitor payments & booking status
+- Revenue monitoring
+- Analytics charts:
+  - Service demand chart
+  - Bookings histogram
+- Make any user a decorator
+- JWT-protected routes
+
+---
+
+### 🎨 Decorator Features
+
+- Decorator dashboard
+- View assigned projects
+- View today’s schedule
+- Update project status:
+  - Assigned
+  - Planning Phase
+  - Materials Prepared
+  - On the Way
+  - Setup in Progress
+  - Completed
+- View earnings summary
+- Check payment history
+
+---
+
+## 🏠 Home Page Sections
+
+- Animated Hero Section (Framer Motion)
+- Dynamic Services Section (from server)
+- Top Decorators Section (ratings & specialties)
+- Service Coverage Map (React Leaflet)
+- Beautiful, modern UI using DaisyUI
+
+---
+
+## 🔐 Authentication & Authorization
+
+- Email & password authentication
+- Social login support
+- Profile image upload (ImageBB / Cloudinary)
+- JWT-based authentication
+- Role-based routing:
+  - Admin
+  - Decorator
+  - User
+- Protected routes persist on reload
+
+---
+
+## 💳 Payment System
+
+- Stripe payment integration
+- Secure checkout
+- Transaction data stored in database
+- Payment receipts available in user dashboard
+
+---
+
+## ⚙️ Technologies Used
+
+### 🖥️ Frontend
+
+- React
+- Vite
+- Tailwind CSS
+- DaisyUI
+- Framer Motion (latest)
+- TanStack React Query
+- React Router DOM
+- React Leaflet
+- Axios
+- React Icons
+- Stripe JS
+- Firebase Authentication
+
+### 🗄️ Backend
+
+- Node.js
+- Express.js
+- MongoDB
+- Mongoose
+- JWT
+- Stripe API
+- dotenv
+- CORS
+
+---

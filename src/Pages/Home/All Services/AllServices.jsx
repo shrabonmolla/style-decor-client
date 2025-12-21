@@ -1,16 +1,16 @@
 import React from "react";
 import ServiceCard from "./ServiceCard";
 import { useQuery } from "@tanstack/react-query";
-import useAxiosSecure from "../../../Hooks/useAxiosSecure";
 import Loading from "../../../Components/Shared/Loading/Loading";
 import Title from "../../../Components/Shared/Title/Title";
+import useAxios from "../../../Hooks/useAxios";
 
 export default function AllServices() {
-  const axiosSecure = useAxiosSecure();
+  const axiosInstance = useAxios();
   const { data, isLoading } = useQuery({
     queryKey: ["serviceCard"],
     queryFn: async () => {
-      const res = await axiosSecure.get(`/services`);
+      const res = await axiosInstance.get(`/services`);
       return res.data;
     },
   });

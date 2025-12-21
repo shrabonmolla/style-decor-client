@@ -28,11 +28,15 @@ import HomeDashboard from "../Pages/Dashboard/Home/HomeDashboard";
 import PrivateRoute from "./PrivateRoute";
 import AdminRoute from "./AdminRoute";
 import DecoratorRoute from "./DecoratorRoute";
+import Loading from "../Components/Shared/Loading/Loading";
+import Error from "../Components/Shared/Error/Error";
 
 export const router = createBrowserRouter([
   {
     path: "/",
     element: <Mainlayoutes />,
+    errorElement: <Error />,
+    hydrateFallbackElement: <Loading />,
     children: [
       {
         path: "/",
@@ -82,6 +86,9 @@ export const router = createBrowserRouter([
   {
     path: "/authlayout",
     element: <AuthLayout />,
+    errorElement: <Error />,
+    hydrateFallbackElement: <Loading />,
+
     children: [
       {
         path: "login",
@@ -97,6 +104,9 @@ export const router = createBrowserRouter([
   // dashboard layout
   {
     path: "/dashboard",
+    errorElement: <Error />,
+    hydrateFallbackElement: <Loading />,
+
     element: (
       <PrivateRoute>
         <DashboardLayout />
