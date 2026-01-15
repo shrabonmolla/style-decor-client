@@ -4,6 +4,7 @@ import { Link } from "react-router";
 import useAuthHook from "../../Hooks/useAuthHook";
 import { ImageUpload } from "../../Utils/ImageUPload";
 import toast from "react-hot-toast";
+import Title from "../../Components/Shared/Title/Title";
 
 export default function UpdateProfile() {
   const { register, handleSubmit } = useForm();
@@ -28,7 +29,7 @@ export default function UpdateProfile() {
     <div className="card  w-full max-w-sm shrink-0 space-y-2 mx-auto ">
       <div className="card-body">
         <section className="space-y-2 mb-4">
-          <h1 className="text-2xl font-bold ">Update You Profile</h1>
+          <Title text="Update You Profile" />
         </section>
         <form onSubmit={handleSubmit(handleUpdateProfile)} className="fieldset">
           {/* Name */}
@@ -62,7 +63,7 @@ export default function UpdateProfile() {
             name="photo"
           />
 
-          <button className="btn btn-neutral mt-4 rounded-full">Update</button>
+          <button className="btn btn-primary mt-4 rounded-full">Update</button>
         </form>
       </div>
     </div>

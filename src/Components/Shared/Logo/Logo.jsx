@@ -4,7 +4,7 @@ import { Link } from "react-router";
 export default function Logo() {
   return (
     <div>
-      <Link className="font-bold text-2xl" to="/">
+      <Link className="font-bold font-logo text-2xl" to="/">
         StyleDecor
       </Link>
     </div>

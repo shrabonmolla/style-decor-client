@@ -261,7 +261,7 @@ export default function DashboardLayout() {
             {user && (
               <li>
                 <Link
-                  to="/my_profile"
+                  to="/dashboard/my_profile"
                   className="is-drawer-close:tooltip is-drawer-close:tooltip-right"
                   data-tip={user?.displayName}
                 >

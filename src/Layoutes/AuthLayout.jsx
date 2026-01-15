@@ -6,16 +6,21 @@ import loginanimation from "../../public/login.json";
 
 export default function AuthLayout() {
   return (
-    <div className=" p-6 grid grid-cols-1 lg:grid-cols-2  mx-auto bg-gradient-to-t from-blue-300 to-transparent ">
+    <div className="p-6 grid grid-cols-1 lg:grid-cols-2 mx-auto min-h-screen bg-gradient-to-t from-primary/20 to-transparent">
       {/* login & register section */}
-      <section className="grid content-around ">
+      <section className="grid content-center lg:content-around">
         <Logo />
         <Outlet />
       </section>
 
       {/* animation related section */}
-      <section>
-        <Lottie animationData={loginanimation} loop={true} />
+      <section className="flex items-center justify-center">
+        <Lottie
+          animationData={loginanimation}
+          loop={true}
+          style={{ width: "100%", maxWidth: 500 }}
+          // Optional: use primary color override if your Lottie supports it
+        />
       </section>
     </div>
   );

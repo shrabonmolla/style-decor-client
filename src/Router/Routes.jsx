@@ -55,22 +55,22 @@ export const router = createBrowserRouter([
         path: "/contact",
         element: <Contact />,
       },
-      {
-        path: "/my_profile",
-        element: (
-          <PrivateRoute>
-            <MyProfile />
-          </PrivateRoute>
-        ),
-      },
-      {
-        path: "/update_profile",
-        element: (
-          <PrivateRoute>
-            <UpdateProfile />
-          </PrivateRoute>
-        ),
-      },
+      // {
+      //   path: "/my_profile",
+      //   element: (
+      //     <PrivateRoute>
+      //       <MyProfile />
+      //     </PrivateRoute>
+      //   ),
+      // },
+      // {
+      //   path: "/update_profile",
+      //   element: (
+      //     <PrivateRoute>
+      //       <UpdateProfile />
+      //     </PrivateRoute>
+      //   ),
+      // },
       {
         path: "/view_details/:id",
         element: (
@@ -203,6 +203,22 @@ export const router = createBrowserRouter([
       {
         path: "my_payments",
         element: <MyPayments />,
+      },
+      {
+        path: "my_profile",
+        element: (
+          <PrivateRoute>
+            <MyProfile />
+          </PrivateRoute>
+        ),
+      },
+      {
+        path: "update_profile",
+        element: (
+          <PrivateRoute>
+            <UpdateProfile />
+          </PrivateRoute>
+        ),
       },
     ],
   },

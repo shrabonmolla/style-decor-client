@@ -1,114 +1,70 @@
-import {
-  LazyMotion,
-  domAnimation,
-  m,
-  useScroll,
-  useTransform,
-} from "framer-motion";
+import { Link } from "react-router";
 
 const Hero = () => {
-  // Scroll-based parallax
-  const { scrollY } = useScroll();
-  const yText = useTransform(scrollY, [0, 300], [0, -50]);
-  const yImage = useTransform(scrollY, [0, 300], [0, 80]);
-
   return (
-    <LazyMotion features={domAnimation}>
-      <section
-        className="relative overflow-hidden"
-        style={{
-          background: "linear-gradient(135deg, #03045e, #023e8a)",
-        }}
-      >
-        {/* Glow shapes (parallax) */}
-        <m.div
-          style={{ y: yImage }}
-          className="absolute -top-24 -left-24 w-96 h-96 bg-white/10 rounded-full blur-3xl"
-        />
-        <m.div
-          style={{ y: yImage }}
-          className="absolute bottom-0 right-0 w-96 h-96 bg-white/10 rounded-full blur-3xl"
-        />
+    <section className="bg-base-100 py-14 lg:py-20">
+      <div className="container mx-auto   grid lg:grid-cols-2 gap-12 items-center">
+        {/* LEFT CONTENT */}
+        <div className="text-center lg:text-left">
+          <h1 className="font-heading text-4xl sm:text-5xl lg:text-6xl font-bold text-[#2b1d1b] leading-tight">
+            Style Your <br />
+            <span className="italic font-semibold">Home & Ceremony.</span>
+          </h1>
 
-        <div className="container mx-auto px-6 py-28 relative z-10">
-          <div className="grid lg:grid-cols-2 gap-14 items-center">
-            {/* TEXT */}
-            <m.div
-              style={{ y: yText }}
-              initial={{ opacity: 0, y: 40 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, ease: "easeOut" }}
-              className="text-white"
+          <p className="mt-5 text-gray-600 max-w-md mx-auto lg:mx-0">
+            StyleDecor is a smart booking platform for home and ceremony
+            decoration services. Book consultations, choose packages, and track
+            your decoration project in real-time.
+          </p>
+
+          <div className="mt-7 flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
+            <Link
+              to="/services"
+              className="btn rounded-full w-fit mx-auto lg:mx-0 bg-[#b26e63] text-white hover:bg-[#9c5f55] border-none px-6"
             >
-              <m.h1
-                initial={{ opacity: 0, x: -40 }}
-                animate={{ opacity: 1, x: 0 }}
-                transition={{ delay: 0.2 }}
-                className="text-4xl md:text-5xl xl:text-6xl font-extrabold leading-tight"
-              >
-                Elevate Your Events
-                <span className="block text-sky-300">
-                  With Stunning Decorations
-                </span>
-              </m.h1>
+              Book Decoration Service
+            </Link>
 
-              <m.p
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                transition={{ delay: 0.4 }}
-                className="mt-6 max-w-xl text-gray-200"
-              >
-                Book professional decoration services for weddings, birthdays,
-                corporate events, and special occasions — crafted with elegance
-                and care.
-              </m.p>
-
-              {/* Single CTA */}
-              <m.div
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.6 }}
-                className="mt-8"
-              >
-                <button className="btn btn-lg bg-white text-[#03045e] hover:bg-gray-100 border-none shadow-lg">
-                  Book Decoration Service
-                </button>
-              </m.div>
-            </m.div>
-
-            {/* IMAGE */}
-            <m.div
-              style={{ y: yImage }}
-              initial={{ opacity: 0, scale: 0.92 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{ delay: 0.4 }}
-              className="relative"
+            <Link
+              to="/services"
+              className="btn btn-ghost text-[#b26e63] hover:bg-[#f5ebe9] px-6"
             >
-              <div className="rounded-3xl overflow-hidden shadow-2xl border border-white/10">
-                <img
-                  src="https://images.unsplash.com/photo-1522335789203-aabd1fc54bc9"
-                  alt="Event Decoration"
-                  className="w-full h-full object-cover"
-                />
-              </div>
-
-              {/* Floating badge */}
-              <m.div
-                animate={{ y: [0, -10, 0] }}
-                transition={{
-                  duration: 3,
-                  repeat: Infinity,
-                  ease: "easeInOut",
-                }}
-                className="absolute -bottom-6 -left-6 bg-white text-[#03045e] px-5 py-3 rounded-xl shadow-xl font-semibold"
-              >
-                ⭐ Trusted by 500+ Clients
-              </m.div>
-            </m.div>
+              Explore Services →
+            </Link>
           </div>
         </div>
-      </section>
-    </LazyMotion>
+
+        {/* RIGHT CONTENT */}
+        <div className="text-center lg:text-left space-y-6">
+          <h3 className="text-base sm:text-lg font-semibold text-[#2b1d1b]">
+            Smart Home & Ceremony Decoration
+          </h3>
+
+          {/* Feature Pills */}
+          <div className="flex flex-wrap gap-3 justify-center lg:justify-start">
+            {[
+              "Custom Design",
+              "On-site Service",
+              "Live Project Tracking",
+              "Secure Payments",
+            ].map((item, index) => (
+              <span
+                key={index}
+                className="px-5 py-2 rounded-full bg-[#b26e63] text-white text-sm font-medium"
+              >
+                {item}
+              </span>
+            ))}
+          </div>
+
+          <p className="text-gray-600 max-w-md mx-auto lg:mx-0">
+            Browse decoration packages, check decorator availability, make
+            payments, and get beautifully designed spaces with professional
+            decorators.
+          </p>
+        </div>
+      </div>
+    </section>
   );
 };
 

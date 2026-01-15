@@ -5,6 +5,7 @@ import useAxiosSecure from "../../../Hooks/useAxiosSecure";
 import { ImageUpload } from "../../../Utils/ImageUPload";
 import { useNavigate } from "react-router";
 import useAuthHook from "../../../Hooks/useAuthHook";
+import Title from "../../../Components/Shared/Title/Title";
 
 export default function CreateService() {
   const axiosSecure = useAxiosSecure();
@@ -43,10 +44,10 @@ export default function CreateService() {
     <div className="hero  min-h-screen">
       <div className="hero-content flex-col lg:flex-row-reverse">
         <div className="text-center lg:text-left">
-          <h1 className="text-5xl font-bold">Create Service</h1>
-          <p className="py-6">
-            Complete the form to register a new service in the system.
-          </p>
+          <Title
+            text="Add a New Decoration Service"
+            subText="Fill out the details below to create a service package. Make sure to provide accurate information so clients can easily book and enjoy your offerings."
+          />
         </div>
         <div className="card bg-base-100 w-full max-w-sm shrink-0 shadow-2xl">
           <div className="card-body">
@@ -151,7 +152,7 @@ export default function CreateService() {
                 <span className="text-red-400">This field is required</span>
               )}
 
-              <button className="btn btn-neutral mt-4">Create Service</button>
+              <button className="btn btn-primary mt-4">Create Service</button>
             </form>
           </div>
         </div>

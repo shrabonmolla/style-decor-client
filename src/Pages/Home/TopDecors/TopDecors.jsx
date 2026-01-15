@@ -19,7 +19,7 @@ const TopDecors = () => {
   }
 
   return (
-    <section className="w-11/12 px-4 rounded-2xl mx-auto  py-14 bg-[#caf0f8]">
+    <section className="w-11/12 px-4 rounded-2xl mx-auto  py-14 container bg-[#ffe5e1]">
       {/* Section Header */}
       <Title
         text="Top Decorators"

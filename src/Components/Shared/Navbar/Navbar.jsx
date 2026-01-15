@@ -6,25 +6,25 @@ export default function Navbar() {
   const { user } = useAuthHook();
   const NavList = (
     <>
-      <li>
+      <li className="hover:text-primary">
         <NavLink to="/">Home</NavLink>
       </li>
-      <li>
+      <li className="hover:text-primar ">
         <NavLink to="/services">Services</NavLink>
       </li>
-      <li>
+      <li className="hover:text-primary">
         <NavLink to="/about">About</NavLink>
       </li>
-      <li>
+      <li className="hover:text-primary">
         <NavLink to="/contact">Contact</NavLink>
       </li>
     </>
   );
   return (
-    <div className="navbar bg-base-100 shadow-sm">
+    <div className="navbar  w-11/12  mx-auto container">
       <div className="navbar-start">
         <div className="dropdown">
-          <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
+          <div tabIndex={0} role="button" className="btn  lg:hidden">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               className="h-5 w-5"
@@ -43,7 +43,7 @@ export default function Navbar() {
           </div>
           <ul
             tabIndex="-1"
-            className="menu menu-sm dropdown-content bg-base-100 rounded-box z-1 mt-3 w-52 p-2 shadow"
+            className="menu menu-sm  dropdown-content bg-base-100 rounded-box z-1 mt-3 w-52 shadow"
           >
             {NavList}
           </ul>
@@ -52,16 +52,16 @@ export default function Navbar() {
       </div>
 
       <div className="navbar-center hidden lg:flex">
-        <ul className="menu menu-horizontal px-1">{NavList}</ul>
+        <ul className="menu menu-horizontal    px-1">{NavList}</ul>
       </div>
 
       <div className="navbar-end gap-2">
         {user ? (
-          <Link to="/dashboard" className="btn">
+          <Link to="/dashboard" className="btn btn-primary">
             Dashboard
           </Link>
         ) : (
-          <Link to="/authlayout/login" className="btn">
+          <Link to="/authlayout/login" className="btn btn-primary ">
             Login
           </Link>
         )}

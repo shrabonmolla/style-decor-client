@@ -10,11 +10,11 @@ import {
 
 const Footer = () => {
   return (
-    <footer className="mt-20 px-4">
+    <footer className="mt-20 ">
       <div
-        className="max-w-7xl mx-auto rounded-3xl text-white"
+        className="w-full  text-white"
         style={{
-          background: "linear-gradient(135deg, #03045e, #023e8a)",
+          background: "linear-gradient(135deg, #b26e63, #f1e4e2)",
         }}
       >
         {/* Main Footer Content */}

@@ -59,9 +59,9 @@ export default function AssignDecorator() {
           Swal.fire({
             position: "top-end",
             icon: "success",
-            title: `Rider has been assigned.`,
+            title: `Decorator  has been assigned.`,
             showConfirmButton: false,
-            timer: 1500,
+            timer: 2000,
           });
         }
       });
@@ -101,7 +101,7 @@ export default function AssignDecorator() {
                     onClick={() => openAssignRiderModal(parcel)}
                     className="btn btn-primary text-white"
                   >
-                    Find Riders
+                    Find
                   </button>
                 </td>
               </tr>
@@ -114,7 +114,7 @@ export default function AssignDecorator() {
           className="modal modal-bottom sm:modal-middle"
         >
           <div className="modal-box">
-            <h3 className="font-bold text-lg">Riders: {riders.length}!</h3>
+            <h3 className="font-bold text-lg">Decorators: {riders.length}!</h3>
 
             <div className="overflow-x-auto">
               <table className="table table-zebra">
